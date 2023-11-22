@@ -1,7 +1,5 @@
 package engine.BehaviorTree;
 
-import com.sun.istack.internal.NotNull;
-
 public class ConditionNode implements BehaviorTreeNode{
   public final Blackboard blackboard;
 
@@ -9,7 +7,7 @@ public class ConditionNode implements BehaviorTreeNode{
     this.blackboard = blackboard;
   }
 
-  public ConditionNode(Blackboard blackboard, @NotNull Composite parent) {
+  public ConditionNode(Blackboard blackboard, Composite parent) {
     this(blackboard);
     parent.addChild(this);
   }

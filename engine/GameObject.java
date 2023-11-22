@@ -1,5 +1,4 @@
 package engine;
-import Nin.NinConstants;
 import engine.Components.CenterComponent;
 import engine.Components.CollisionComponent;
 import engine.Components.CompEnum;
