@@ -31,13 +31,9 @@ public class GameWorld {
     this.gameWorldSize = gwSize;
     this.ss = screenSize;
     this.cr = new ComponentRegistry();
-
-
   }
 
   public Vec2d getScreenSize(){return this.ss;}
-
-
 
   public Vec2d getGWSize() {
     return gameWorldSize;
@@ -48,9 +44,7 @@ public class GameWorld {
   public void addObjects(GameObject o){oList.add(o);}
 
   public void onDraw(GraphicsContext g){
-
     this.systems.get(SystemEnum.Graphics).onDraw(g);
-
   }
 
   public void clearSystems(){this.systems = new HashMap<>();}
@@ -63,7 +57,6 @@ public class GameWorld {
   }
 
   public void onTick(long nanos){
-
     for (SystemEnum systemEnum : SystemEnum.values()) {
       if (this.systems.get(systemEnum) != null) {
         this.systems.get(systemEnum).onTick(nanos);
@@ -91,7 +84,6 @@ public class GameWorld {
       }
     }
     removalQueue.clear();
-
   }
 
   public void onKeyPressed(KeyEvent e){
@@ -144,8 +136,5 @@ public class GameWorld {
   public void onResize(Vec2d newSize, double aspect){
     GraphicsSystem gs = getSystem(SystemEnum.Graphics);
     gs.onResize(newSize, aspect);
-
   }
-
-
 }

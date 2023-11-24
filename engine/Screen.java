@@ -67,7 +67,6 @@ public class Screen {
   }
 
   public void addElements(UIElement el){
-
     containedEls.add(el);
   }
 
