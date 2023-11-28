@@ -11,4 +11,6 @@ public class HamboningConstants {
     public static final Color NIN_PLATFORM_COLOR = Color.GOLD;
     public static final double PLATFORM_MASS = 1;
     public static final double PLATFORM_REST = 0.2;
+
+    public static final String SAVE_PATH = "hamboning/saves/save.xml";
 }

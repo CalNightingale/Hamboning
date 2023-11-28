@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<GameWorld>
+   <GameWorldSize height="4.0" width="4.0"/>
+   <Viewport gameCenter="(480.0, 270.0)" pan-translate="(0.0, 0.0)" position="(210.0, 0.0)" screenSize="(960.0, 540.0)" size="(540.0, 540.0)" zoom="135.0"/>
+   <GameObjects>
+      <Object id="5914685a-be9b-4023-b672-29810088d03f" position="(0.0, 0.0)" size="(4.0, 4.0)">
+         <Component id="GraphicsComponent">
+            <ShapeEl color="0xadd8e6ff" id="Rectangle" position="(0.0, 0.0)" size="(4.0, 4.0)"/>
+         </Component>
+      </Object>
+      <Object id="919abd9d-3af2-4490-954d-26d126b82be2" position="(1.0, 1.0)" size="(1.0, 0.1)">
+         <Component force="(0.0, 0.0)" id="PhysicsComponent" impulse="(0.0, 0.0)" isGrounded="true" mass="1.0" restitution="0.2" velocity="(0.0, 0.0)"/>
+         <Component id="CollisionComponent">
+            <Shape id="AAB" isStatic="true" size="(1.0, 0.1)" topLeft="(1.0, 1.0)"/>
+         </Component>
+         <Component id="GraphicsComponent">
+            <ShapeEl color="0xffd700ff" id="Rectangle" position="(1.0, 1.0)" size="(1.0, 0.1)"/>
+         </Component>
+      </Object>
+   </GameObjects>
+   <Systems>
+      <System id="GraphicsSystem">
+         <Layers>
+            <Layer id="0">5914685a-be9b-4023-b672-29810088d03f</Layer>
+            <Layer id="1">919abd9d-3af2-4490-954d-26d126b82be2</Layer>
+            <Layer id="2"/>
+         </Layers>
+      </System>
+      <System id="PhysicsSystem">
+         <ObjList>919abd9d-3af2-4490-954d-26d126b82be2</ObjList>
+         <GravityMap>
+            <GameObject id="919abd9d-3af2-4490-954d-26d126b82be2">(0.0, true)</GameObject>
+         </GravityMap>
+      </System>
+      <System id="SpriteSystem">
+         <ObjList/>
+         <Sprites/>
+      </System>
+      <System id="CollisionSystem">
+         <Layers>
+            <Layer id="0"/>
+            <Layer id="1">919abd9d-3af2-4490-954d-26d126b82be2</Layer>
+            <Layer id="2"/>
+            <Layer id="3"/>
+         </Layers>
+      </System>
+      <System id="InputSystem">
+         <ObjList/>
+         <InputMap>{null=false, C=false, S=false, LEFT=false, DOWN=false, UP=false, RIGHT=false, A=false, SPACE=false, W=false}</InputMap>
+      </System>
+   </Systems>
+</GameWorld>

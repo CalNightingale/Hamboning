@@ -55,7 +55,7 @@ public class HamboningScreen extends Screen {
             this.gw = new HamboningWorld(gameWorldSize, screenSize, false);
             this.vp = new Viewport(ninPortPos, ninPortSize, screenSize, this.gw);
             gw.givePort(this.vp);
-            sl.load("Nin/MapFiles/NinSaveFile.xml", this.gw);
+            sl.load(HamboningConstants.SAVE_PATH, this.gw);
             addElements(this.vp);
             System.out.println("finished loading");
 
@@ -64,16 +64,11 @@ public class HamboningScreen extends Screen {
             } else {
                 loadButton.setColor(Color.DARKBLUE);
             }
-
-
-
-
-
         });
 
         saveButton.setClickAction(() -> {
             try {
-                sl.saveGameState("Nin/MapFiles/NinSaveFile.xml", this.gw);
+                sl.saveGameState(HamboningConstants.SAVE_PATH, this.gw);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -101,7 +96,7 @@ public class HamboningScreen extends Screen {
             this.sl = new SaveLoad();
 
             try {
-                sl.saveGameState("Nin/MapFiles/NinSaveFile.xml", gw);
+                sl.saveGameState(HamboningConstants.SAVE_PATH, gw);
 
             } catch (Exception e) {
                 e.printStackTrace();
