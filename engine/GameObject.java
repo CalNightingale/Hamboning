@@ -1,19 +1,5 @@
 package engine;
-import Nin.NinConstants;
-import engine.Components.CenterComponent;
-import engine.Components.CollisionComponent;
-import engine.Components.CompEnum;
-import engine.Components.Component;
-import engine.Components.DecayComponent;
-import engine.Components.DraggableComponent;
-import engine.Components.GraphicsComponent;
-import engine.Components.InputComponent;
-import engine.Components.MoveableComponent;
-import engine.Components.PathfindingComponent;
-import engine.Components.PhysicsComponent;
-import engine.Components.ProjectileComponent;
-import engine.Components.SpriteComponent;
-import engine.Components.TransformComponent;
+import engine.Components.*;
 import engine.Shapes.AAB;
 import engine.Shapes.Collision;
 import engine.Systems.BaseSystem;
@@ -45,8 +31,6 @@ public class GameObject {
     this.tc = new TransformComponent(position, size, this);
     this.gw = gw;
     this.id = UUID.randomUUID();
-
-
   }
 
 
@@ -123,8 +107,6 @@ public class GameObject {
 
   public<T extends Component<T>> void addComponent(Component c){
     compList.put(c.getTag(), c);
-
-
   }
 
   public <T extends Component<T>> void removeComponent(Component c){
@@ -192,7 +174,6 @@ public class GameObject {
     if (physc != null){
       physc.onTick(nanos);
     }
-
   }
 
   public void onResize(Vec2d newSize, double aspect){

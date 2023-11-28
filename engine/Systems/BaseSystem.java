@@ -1,6 +1,5 @@
 package engine.Systems;
 
-import engine.Components.CompEnum;
 import engine.GameObject;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,7 +19,6 @@ public abstract class BaseSystem<T extends BaseSystem<T>> {
 
   public void addObject(GameObject o){
     this.objList.add(o);
-
   }
 
   public void initialize(Element el, HashMap<UUID, GameObject> gameObjectMap){

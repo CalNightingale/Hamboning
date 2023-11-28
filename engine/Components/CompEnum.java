@@ -66,6 +66,10 @@ public enum CompEnum {
     public DecayComponent createComponent(Element data, TransformComponent tc, Vec2d ss){
       return new DecayComponent(data, tc, ss);
     }
+  }, Sound {
+    public SoundComponent createComponent(Element data, TransformComponent tc, Vec2d ss){
+      return new SoundComponent(data, tc, ss);
+    }
   };
 
 
