@@ -45,11 +45,16 @@ public class SoundComponent implements Component<SoundComponent>{
     }
     @Override
     public void onTick(long nanos) {
+        play(false);
+    }
+
+    public void play(boolean truncate) {
         if (!loaded) {
             load();
             loaded = true;
         }
-        if (!clip.isRunning()) {
+        // if truncation enabled OR clip is no longer running, play clip from beginning
+        if (truncate || !clip.isRunning()) {
             clip.setFramePosition(0);
             clip.start();
         }
