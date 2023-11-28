@@ -45,12 +45,14 @@ public class SoundComponent implements Component<SoundComponent>{
     }
     @Override
     public void onTick(long nanos) {
-        System.out.println("SC ONTICK");
         if (!loaded) {
             load();
             loaded = true;
         }
-        clip.start();
+        if (!clip.isRunning()) {
+            clip.setFramePosition(0);
+            clip.start();
+        }
     }
 
     @Override
