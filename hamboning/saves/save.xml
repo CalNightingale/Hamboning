@@ -3,53 +3,53 @@
    <GameWorldSize height="4.0" width="4.0"/>
    <Viewport gameCenter="(480.0, 270.0)" pan-translate="(0.0, 0.0)" position="(210.0, 0.0)" screenSize="(960.0, 540.0)" size="(540.0, 540.0)" zoom="135.0"/>
    <GameObjects>
-      <Object id="b51d99c6-9488-4c55-8c14-957982c21a14" position="(0.0, 0.0)" size="(4.0, 4.0)">
+      <Object id="335b8a4a-e8be-4b3b-877a-208ffb744d90" position="(0.0, 0.0)" size="(4.0, 4.0)">
          <Component id="GraphicsComponent">
             <ShapeEl color="0xadd8e6ff" id="Rectangle" position="(0.0, 0.0)" size="(4.0, 4.0)"/>
          </Component>
       </Object>
-      <Object id="ea23034b-b46f-4b29-8e1f-00d28c9df125" position="(1.0, 1.0)" size="(1.0, 0.1)">
+      <Object id="3a9cf885-5fa9-4dcd-aa44-38622d97f759" position="(1.0, 1.0)" size="(1.0, 0.1)">
+         <Component force="(0.0, 0.0)" id="PhysicsComponent" impulse="(0.0, 0.0)" isGrounded="true" mass="1.0" restitution="0.2" velocity="(0.0, 0.0)"/>
          <Component id="GraphicsComponent">
             <ShapeEl color="0xffd700ff" id="Rectangle" position="(1.0, 1.0)" size="(1.0, 0.1)"/>
          </Component>
-         <Component force="(0.0, 0.0)" id="PhysicsComponent" impulse="(0.0, 0.0)" isGrounded="true" mass="1.0" restitution="0.2" velocity="(0.0, 0.0)"/>
          <Component id="CollisionComponent">
             <Shape id="AAB" isStatic="true" size="(1.0, 0.1)" topLeft="(1.0, 1.0)"/>
          </Component>
       </Object>
    </GameObjects>
    <Systems>
-      <System id="GraphicsSystem">
+      <System id="CollisionSystem">
          <Layers>
-            <Layer id="0">b51d99c6-9488-4c55-8c14-957982c21a14</Layer>
-            <Layer id="1">ea23034b-b46f-4b29-8e1f-00d28c9df125</Layer>
+            <Layer id="0"/>
+            <Layer id="1">3a9cf885-5fa9-4dcd-aa44-38622d97f759</Layer>
             <Layer id="2"/>
+            <Layer id="3"/>
          </Layers>
       </System>
       <System>
-         <ObjList>b51d99c6-9488-4c55-8c14-957982c21a14</ObjList>
+         <ObjList>335b8a4a-e8be-4b3b-877a-208ffb744d90</ObjList>
       </System>
       <System id="PhysicsSystem">
-         <ObjList>ea23034b-b46f-4b29-8e1f-00d28c9df125</ObjList>
+         <ObjList>3a9cf885-5fa9-4dcd-aa44-38622d97f759</ObjList>
          <GravityMap>
-            <GameObject id="ea23034b-b46f-4b29-8e1f-00d28c9df125">(0.0, true)</GameObject>
+            <GameObject id="3a9cf885-5fa9-4dcd-aa44-38622d97f759">(0.0, true)</GameObject>
          </GravityMap>
+      </System>
+      <System id="GraphicsSystem">
+         <Layers>
+            <Layer id="0">335b8a4a-e8be-4b3b-877a-208ffb744d90</Layer>
+            <Layer id="1">3a9cf885-5fa9-4dcd-aa44-38622d97f759</Layer>
+            <Layer id="2"/>
+         </Layers>
       </System>
       <System id="SpriteSystem">
          <ObjList/>
          <Sprites/>
       </System>
-      <System id="CollisionSystem">
-         <Layers>
-            <Layer id="0"/>
-            <Layer id="1">ea23034b-b46f-4b29-8e1f-00d28c9df125</Layer>
-            <Layer id="2"/>
-            <Layer id="3"/>
-         </Layers>
-      </System>
       <System id="InputSystem">
          <ObjList/>
-         <InputMap>{C=false, S=false, LEFT=false, DOWN=false, UP=false, RIGHT=false, A=false, SPACE=false, W=false}</InputMap>
+         <InputMap>{SPACE=false, DOWN=false, C=false, S=false, LEFT=false, A=false, RIGHT=false, UP=false, W=false}</InputMap>
       </System>
    </Systems>
 </GameWorld>
