@@ -13,4 +13,5 @@ public class HamboningConstants {
     public static final double PLATFORM_REST = 0.2;
 
     public static final String SAVE_PATH = "hamboning/saves/save.xml";
+    public static final String SFX_PATH_HAMBONING = "hamboning/assets/hamboning.wav";
 }

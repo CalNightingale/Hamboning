@@ -12,7 +12,11 @@ public class SoundComponent implements Component<SoundComponent>{
     private Clip clip;
     private boolean loaded;
     public SoundComponent(Element data, TransformComponent tc, Vec2d ss) {
-        filePath = data.getAttribute("filePath");
+        this(data.getAttribute("filePath"));
+    }
+
+    public SoundComponent(String filePath) {
+        this.filePath = filePath;
         clip = null;
         loaded = false;
     }
@@ -30,16 +34,18 @@ public class SoundComponent implements Component<SoundComponent>{
             System.exit(1);
         } catch (UnsupportedAudioFileException e) {
             System.out.println("Unsupported audio file type: " + filePath);
+            System.exit(2);
         } catch (IOException e) {
             System.out.println("IO Exception during loading of file: " + filePath);
-            System.exit(2);
+            System.exit(3);
         } catch (LineUnavailableException e) {
             System.out.println("LineUnavailableException occurred in soundfile: " + filePath);
-            System.exit(3);
+            System.exit(4);
         }
     }
     @Override
     public void onTick(long nanos) {
+        System.out.println("SC ONTICK");
         if (!loaded) {
             load();
             loaded = true;

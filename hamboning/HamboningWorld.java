@@ -1,28 +1,13 @@
 package hamboning;
 
-import engine.Components.CollisionComponent;
-import engine.Components.Component;
-import engine.Components.ComponentRegistry;
-import engine.Components.GraphicsComponent;
-import engine.Components.InputComponent;
-import engine.Components.MoveableComponent;
-import engine.Components.PhysicsComponent;
-import engine.Components.ProjectileComponent;
-import engine.Components.SpriteComponent;
+import engine.Components.*;
 import engine.GameObject;
 import engine.GameWorld;
 import engine.SaveLoad;
 import engine.Shapes.AAB;
 import engine.Shapes.Circle;
 import engine.Shapes.Polygon;
-import engine.Systems.CollisionSystem;
-import engine.Systems.GraphicsSystem;
-import engine.Systems.InputSystem;
-import engine.Systems.PathfindingSystem;
-import engine.Systems.PhysicsSystem;
-import engine.Systems.ProjectileSystem;
-import engine.Systems.SpriteSystem;
-import engine.Systems.TimerSystem;
+import engine.Systems.*;
 import engine.UILibrary.UICircle;
 import engine.UILibrary.UIPolygon;
 import engine.UILibrary.UIRectangle;
@@ -34,6 +19,7 @@ public class HamboningWorld extends GameWorld {
     private SpriteSystem s;
     private InputSystem i;
     private CollisionSystem c;
+    private SoundSystem soundSystem;
     private boolean firstTick = true;
 
 
@@ -70,7 +56,10 @@ public class HamboningWorld extends GameWorld {
 
         UIRectangle backgroundElement = new UIRectangle(new Vec2d(0), HamboningConstants.GW_SIZE, HamboningConstants.NIN_BACKGROUND_COLOR, getScreenSize());
         GraphicsComponent backgroundGC = new GraphicsComponent(ninBackground.tc, getScreenSize(), backgroundElement);
+        SoundComponent backgroundSC = new SoundComponent(HamboningConstants.SFX_PATH_HAMBONING);
         ninBackground.addComponent(backgroundGC);
+        ninBackground.addComponent(backgroundSC);
+        soundSystem.addObject(ninBackground);
         g.addObjectToLayer(ninBackground, 0);
         addObjects(ninBackground);
 
@@ -207,7 +196,6 @@ public class HamboningWorld extends GameWorld {
 
 
     private void setupSystems(){
-
         clearSystems();
         this.p = new PhysicsSystem();
         addSystem(p);
@@ -219,7 +207,8 @@ public class HamboningWorld extends GameWorld {
         addSystem(c);
         this.i = new InputSystem();
         addSystem(i);
-
+        this.soundSystem = new SoundSystem();
+        addSystem(soundSystem);
     }
 
 }

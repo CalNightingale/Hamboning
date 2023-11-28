@@ -125,13 +125,10 @@ public class GraphicsSystem extends BaseSystem<GraphicsSystem>{
         o.onDraw(g);
       }
     }
-
-
   }
 
   @Override
   public void onTick(long nanos) {
-
 
   }
 
@@ -143,7 +140,6 @@ public class GraphicsSystem extends BaseSystem<GraphicsSystem>{
         o.onResize(newSize, aspect);
       }
     }
-
   }
 
   public boolean isInside(Vec2d point, TransformComponent tc){
