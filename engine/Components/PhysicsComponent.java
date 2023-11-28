@@ -1,6 +1,5 @@
 package engine.Components;
 
-import Nin.NinConstants;
 import engine.Shapes.Collision;
 import engine.support.Vec2d;
 import javafx.scene.canvas.GraphicsContext;
@@ -17,6 +16,8 @@ public class PhysicsComponent implements Component<PhysicsComponent>{
   private double accumulatedTime = 0.0;
   public double restitution;
   private boolean isGrounded = false;
+
+  private final double dragX = 0.01;
 
   public PhysicsComponent(double mass, double restitution, TransformComponent tc){
     this.mass = mass;
@@ -106,11 +107,11 @@ public class PhysicsComponent implements Component<PhysicsComponent>{
 //      System.out.println("impulse" + impulse);
 //    }
 
-    if (Math.abs(vel.x) > NinConstants.DRAGX){
+    if (Math.abs(vel.x) > dragX){
       if ( vel.x > 0){
-        vel = new Vec2d(vel.x - NinConstants.DRAGX, vel.y);
+        vel = new Vec2d(vel.x - dragX, vel.y);
       } else {
-        vel = new Vec2d(vel.x + NinConstants.DRAGX, vel.y);
+        vel = new Vec2d(vel.x + dragX, vel.y);
       }
     }
     vel = (vel.plus(addedImpulse));

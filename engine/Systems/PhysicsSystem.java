@@ -19,7 +19,6 @@ public class PhysicsSystem extends BaseSystem<PhysicsSystem>{
   public PhysicsSystem(){
     super();
     setTag(SystemEnum.Physics);
-
   }
 
 

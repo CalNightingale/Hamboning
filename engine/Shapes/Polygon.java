@@ -1,6 +1,5 @@
 package engine.Shapes;
 
-import Nin.NinConstants;
 import engine.Components.TransformComponent;
 import engine.GameObject;
 import engine.HelperFunctions;

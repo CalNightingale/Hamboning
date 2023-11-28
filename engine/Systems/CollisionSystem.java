@@ -164,7 +164,6 @@ public class CollisionSystem extends BaseSystem<CollisionSystem>{
 
             }
             //System.out.println("is colliding within the same layer!");
-
           }
         }
       }
