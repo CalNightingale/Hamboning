@@ -5,6 +5,8 @@ import javafx.scene.paint.Color;
 
 public class HamboningConstants {
     public static final Vec2d GW_SIZE = new Vec2d(4,4);
+    public static final Vec2d MAP_SIZE = new Vec2d(4,4);
+    public static final double TILE_AMT = 64;
     public static final Color NIN_BACKGROUND_COLOR = Color.LIGHTBLUE;
     public static final Vec2d PLATFORM_POS = new Vec2d(1,1);
     public static final Vec2d PLATFORM_SIZE = new Vec2d(1,0.1);

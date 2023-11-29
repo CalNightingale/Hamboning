@@ -5,6 +5,7 @@ import engine.Components.SpriteComponent;
 import engine.GameObject;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.UUID;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -15,11 +16,13 @@ import org.w3c.dom.NodeList;
 public class SpriteSystem extends BaseSystem<SpriteSystem>{
   private HashMap<GameObject, Image> sprites = new HashMap<>();
   private HashMap<Image, String> tempmap = new HashMap<>();
+  private HashMap<String, Image> temp2 = new HashMap<>();
   public SpriteSystem(){
     super();
     setTag(SystemEnum.Sprite);
 
   }
+
 
   @Override
   public void initialize(Element el, HashMap<UUID, GameObject> gameObjectMap){
@@ -46,6 +49,16 @@ public class SpriteSystem extends BaseSystem<SpriteSystem>{
   }
 
 
+  public void registerImage(String key, String filePath){
+    System.out.println("registering image");
+    Image spriteImage = new Image(filePath);
+    this.tempmap.put(spriteImage, key);
+    this.temp2.put(key, spriteImage);
+  }
+
+  public Image getImage(String key){
+    return temp2.get(key);
+  }
   @Override
   public Element serialize(Element el){
 

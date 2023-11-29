@@ -21,6 +21,7 @@ public class HamboningWorld extends GameWorld {
     private CollisionSystem c;
     private SoundSystem soundSystem;
     private boolean firstTick = true;
+    private HamboningMapLoader mapLoader;
 
 
 
@@ -51,17 +52,20 @@ public class HamboningWorld extends GameWorld {
 
     public void setLevel(){
 
-        //creating background
-        GameObject ninBackground = new GameObject(new Vec2d(0), HamboningConstants.GW_SIZE, this);
+        mapLoader = new HamboningMapLoader(this.s, this.g, this.c, this.i, HamboningConstants.MAP_SIZE, this, 123456);
 
-        UIRectangle backgroundElement = new UIRectangle(new Vec2d(0), HamboningConstants.GW_SIZE, HamboningConstants.NIN_BACKGROUND_COLOR, getScreenSize());
-        GraphicsComponent backgroundGC = new GraphicsComponent(ninBackground.tc, getScreenSize(), backgroundElement);
-        SoundComponent backgroundSC = new SoundComponent(HamboningConstants.SFX_PATH_HAMBONING);
-        ninBackground.addComponent(backgroundGC);
-        ninBackground.addComponent(backgroundSC);
-        soundSystem.addObject(ninBackground);
-        g.addObjectToLayer(ninBackground, 0);
-        addObjects(ninBackground);
+
+        //creating background
+//        GameObject ninBackground = new GameObject(new Vec2d(0), HamboningConstants.GW_SIZE, this);
+//
+//        UIRectangle backgroundElement = new UIRectangle(new Vec2d(0), HamboningConstants.GW_SIZE, HamboningConstants.NIN_BACKGROUND_COLOR, getScreenSize());
+//        GraphicsComponent backgroundGC = new GraphicsComponent(ninBackground.tc, getScreenSize(), backgroundElement);
+//        SoundComponent backgroundSC = new SoundComponent(HamboningConstants.SFX_PATH_HAMBONING);
+//        ninBackground.addComponent(backgroundGC);
+//        ninBackground.addComponent(backgroundSC);
+//        soundSystem.addObject(ninBackground);
+//        g.addObjectToLayer(ninBackground, 0);
+//        addObjects(ninBackground);
 
 
         //creating platform
