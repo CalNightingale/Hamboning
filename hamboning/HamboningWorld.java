@@ -69,24 +69,24 @@ public class HamboningWorld extends GameWorld {
 
 
         //creating platform
-        GameObject ninPlat = new GameObject(HamboningConstants.PLATFORM_POS, HamboningConstants.PLATFORM_SIZE, this);
-
-        UIRectangle ninPlatEl = new UIRectangle(ninPlat.tc.getPosition(), ninPlat.tc.getSize(), HamboningConstants.NIN_PLATFORM_COLOR, getScreenSize());
-
-        AAB ninPlatColl = new AAB(ninPlat.tc.getPosition(), ninPlat.tc.getSize(), true);
-        CollisionComponent ninPlatCC = new CollisionComponent(ninPlatColl, ninPlat);
-        ninPlat.addComponent(ninPlatCC);
-        c.addObjectToLayer(ninPlat, 1);
-
-        PhysicsComponent ninPlatPC = new PhysicsComponent(HamboningConstants.PLATFORM_MASS, HamboningConstants.PLATFORM_REST, ninPlat.tc);
-        ninPlat.addComponent(ninPlatPC);
-        p.addPhysicsObject(ninPlat, 0, true);
-
-
-        GraphicsComponent ninPlatGC = new GraphicsComponent(ninPlat.tc, getScreenSize(), ninPlatEl);
-        ninPlat.addComponent(ninPlatGC);
-        g.addObjectToLayer(ninPlat, 1);
-        addObjects(ninPlat);
+//        GameObject ninPlat = new GameObject(HamboningConstants.PLATFORM_POS, HamboningConstants.PLATFORM_SIZE, this);
+//
+//        UIRectangle ninPlatEl = new UIRectangle(ninPlat.tc.getPosition(), ninPlat.tc.getSize(), HamboningConstants.NIN_PLATFORM_COLOR, getScreenSize());
+//
+//        AAB ninPlatColl = new AAB(ninPlat.tc.getPosition(), ninPlat.tc.getSize(), true);
+//        CollisionComponent ninPlatCC = new CollisionComponent(ninPlatColl, ninPlat);
+//        ninPlat.addComponent(ninPlatCC);
+//        c.addObjectToLayer(ninPlat, 1);
+//
+//        PhysicsComponent ninPlatPC = new PhysicsComponent(HamboningConstants.PLATFORM_MASS, HamboningConstants.PLATFORM_REST, ninPlat.tc);
+//        ninPlat.addComponent(ninPlatPC);
+//        p.addPhysicsObject(ninPlat, 0, true);
+//
+//
+//        GraphicsComponent ninPlatGC = new GraphicsComponent(ninPlat.tc, getScreenSize(), ninPlatEl);
+//        ninPlat.addComponent(ninPlatGC);
+//        g.addObjectToLayer(ninPlat, 1);
+//        addObjects(ninPlat);
 
 
     }
