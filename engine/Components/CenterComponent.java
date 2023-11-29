@@ -21,6 +21,7 @@ public class CenterComponent implements Component<CenterComponent>{
 
   @Override
   public void onTick(long nanos) {
+    System.out.println("setting viewport");
     this.vp.setPan(this.tc.getPosition());
 
   }

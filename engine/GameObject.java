@@ -141,6 +141,7 @@ public class GameObject {
 
 
   public void onTick(long nanos){
+    System.out.println("object on tick");
     InputComponent ic = this.getComponent(CompEnum.Input);
     if (ic != null){
       ic.onTick(nanos);

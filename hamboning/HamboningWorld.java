@@ -12,6 +12,7 @@ import engine.UILibrary.UICircle;
 import engine.UILibrary.UIPolygon;
 import engine.UILibrary.UIRectangle;
 import engine.support.Vec2d;
+import javafx.scene.paint.Color;
 
 public class HamboningWorld extends GameWorld {
     private PhysicsSystem p;
@@ -41,19 +42,11 @@ public class HamboningWorld extends GameWorld {
         }
         super.onTick(nanos);
 
-        for (GameObject o: oList){
-            if (o.tc.getPosition().y > 3){
-                addToRemovals(o);
-                System.out.println("removing fallen object");
-            }
-        }
-
     }
 
     public void setLevel(){
 
         mapLoader = new HamboningMapLoader(this.s, this.g, this.c, this.i, HamboningConstants.MAP_SIZE, this, 123456);
-
 
         //creating background
 //        GameObject ninBackground = new GameObject(new Vec2d(0), HamboningConstants.GW_SIZE, this);
@@ -67,6 +60,25 @@ public class HamboningWorld extends GameWorld {
 //        g.addObjectToLayer(ninBackground, 0);
 //        addObjects(ninBackground);
 
+
+        GameObject mordecai = new GameObject(HamboningConstants.MORD_POS, HamboningConstants.MORD_SIZE, this);
+        SpriteComponent mordSprite = new SpriteComponent(new Vec2d(80, 80), new Vec2d(30, 50), Color.MAROON,
+            this.getScreenSize(), mordecai.tc, false);
+        mordecai.addComponent(mordSprite);
+
+//        SoundComponent backgroundSC = new SoundComponent(HamboningConstants.SFX_PATH_HAMBONING);
+//        mordecai.addComponent(backgroundSC);
+//        soundSystem.addObject(mordecai);
+
+        CenterComponent mordCC = new CenterComponent(this.vp, mordecai);
+        mordecai.addComponent(mordCC);
+
+        s.addAndLoad(mordecai, "hamboning/assets/CharacterAssets/mordecai.png");
+        GraphicsComponent mordGC = new GraphicsComponent(mordecai.tc, getScreenSize(), mordSprite);
+        mordecai.addComponent(mordGC);
+        g.addObjectToLayer(mordecai, 1);
+
+        this.addObjects(mordecai);
 
         //creating platform
 //        GameObject ninPlat = new GameObject(HamboningConstants.PLATFORM_POS, HamboningConstants.PLATFORM_SIZE, this);
