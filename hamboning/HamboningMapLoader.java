@@ -518,7 +518,8 @@ public class HamboningMapLoader {
 
   private void createDefaultTile(int rowCount, int colCount) {
     // Logic to handle unknown types of tiles
-    System.out.println("creating default (nothing)");
+    //System.out.println("creating default (nothing)");
+    // TODO
   }
 
 

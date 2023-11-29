@@ -25,6 +25,9 @@ public class HamboningWorld extends GameWorld {
     private boolean firstTick = true;
     private HamboningMapLoader mapLoader;
 
+    private GameObject mordecai;
+    private GameObject cart;
+
 
 
     public HamboningWorld(Vec2d gwSize, Vec2d screenSize, boolean firstTick){
@@ -62,7 +65,7 @@ public class HamboningWorld extends GameWorld {
 //        addObjects(ninBackground);
 
 
-        GameObject mordecai = new GameObject(HamboningConstants.MORD_POS, HamboningConstants.MORD_SIZE, this);
+        mordecai = new GameObject(HamboningConstants.MORD_POS, HamboningConstants.MORD_SIZE, this);
         SpriteComponent mordSprite = new SpriteComponent(new Vec2d(80, 80), new Vec2d(30, 50), Color.MAROON,
             this.getScreenSize(), mordecai.tc, false);
         mordecai.addComponent(mordSprite);
@@ -74,7 +77,7 @@ public class HamboningWorld extends GameWorld {
         MoveableComponent mc = new MoveableComponent(mordecai, 0.5);
         mordecai.addComponent(mc);
 
-        CharacterInputComponent mordecaiIC = new CharacterInputComponent(mordecai, this);
+        CharacterInputComponent mordecaiIC = new CharacterInputComponent(mordecai, this, this::getInCart);
         mordecai.addComponent(mordecaiIC);
         i.addObject(mordecai);
 
@@ -88,7 +91,12 @@ public class HamboningWorld extends GameWorld {
 
         this.addObjects(mordecai);
 
+        cart = makeCart();
+    }
+
+    private GameObject makeCart() {
         GameObject cart = new GameObject(HamboningConstants.CART_POS, HamboningConstants.CART_SIZE, this);
+        // Graphics
         SpriteComponent cartSprite = new SpriteComponent(new Vec2d(0), new Vec2d(100,90), Color.WHITE,
                 this.getScreenSize(), cart.tc, false);
         cart.addComponent(cartSprite);
@@ -96,10 +104,21 @@ public class HamboningWorld extends GameWorld {
         GraphicsComponent cartGC = new GraphicsComponent(cart.tc, getScreenSize(), cartSprite);
         cart.addComponent(cartGC);
         g.addObjectToLayer(cart, 1);
+
+        // Movement
+        MoveableComponent cartMC = new MoveableComponent(cart, 1);
+        cart.addComponent(cartMC);
+        CharacterInputComponent cartIC = new CharacterInputComponent(cart, this, null);
+        cart.addComponent(cartIC);
+
         this.addObjects(cart);
+        return cart;
     }
 
-
+    private void getInCart() {
+        i.removeObject(mordecai);
+        i.addObject(cart);
+    }
 
     private void setupSystems(){
         clearSystems();
