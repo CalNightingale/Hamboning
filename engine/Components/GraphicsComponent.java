@@ -89,7 +89,7 @@ public class GraphicsComponent implements Component<GraphicsComponent>{
   }
 
   public void setShapePos(Vec2d pos){
-    if (this.element != null){
+    if (this.element != null ){
       this.element.setPosition(pos);
     }
   }
@@ -126,7 +126,7 @@ public class GraphicsComponent implements Component<GraphicsComponent>{
 
   public Vec2d getPosition(){return this.tc.getPosition();}
 
-  public void setPosition(Vec2d position){this.tc.setPos(position);}
+  public void setPosition(Vec2d position){setPosition(position);}
 
   public void onResize(Vec2d newSize, double aspect){
     if (this.img != null){

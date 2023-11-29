@@ -27,10 +27,10 @@ public class TransformComponent {
     if (cc != null){
       cc.getShape().setPosition(this);
     }
-    GraphicsComponent gc = this.o.getComponent(CompEnum.Graphics);
-    if (gc != null){
-      gc.setShapePos(pos); //work around for polygons not the cleanest
-    }
+//    GraphicsComponent gc = this.o.getComponent(CompEnum.Graphics);
+//    if (gc != null){
+//      gc.setShapePos(pos); //work around for polygons not the cleanest
+//    }
 
   }
 

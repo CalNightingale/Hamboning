@@ -43,6 +43,7 @@ public class Viewport extends UIElement {
         this.getPosition().y + this.getSize().y/2);
     this.gameToScreen = this.gameToScreenCompute(this.zoom);
     this.screenToGame = getInvertedAffine();
+    setInitialPos(new Vec2d(gw.getGWSize().x / 2, gw.getGWSize().y / 2));
 
   }
 

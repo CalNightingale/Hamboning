@@ -67,6 +67,7 @@ public class GameWorld {
       if (dc != null){
         o.onTick(nanos);
       }
+      o.onTick(nanos);
     }
 
     this.processRemovals();

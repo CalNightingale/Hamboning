@@ -84,6 +84,10 @@ public class SpriteComponent extends UIElement implements Component<SpriteCompon
 
   @Override
   public void onDraw(GraphicsContext g) {
+//    if (getPosition().x != 0){
+//      System.out.println(getPosition() + "pos");
+//      System.out.println(tc.getPosition() + "tc pos");
+//    }
       g.drawImage(this.sprite, getPosition().x, getPosition().y, getSize().x, getSize().y,
           tc.getPosition().x, tc.getPosition().y, tc.getSize().x, tc.getSize().y);
 

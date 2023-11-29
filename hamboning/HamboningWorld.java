@@ -12,6 +12,7 @@ import engine.UILibrary.UICircle;
 import engine.UILibrary.UIPolygon;
 import engine.UILibrary.UIRectangle;
 import engine.support.Vec2d;
+import hamboning.Components.CharacterInputComponent;
 import javafx.scene.paint.Color;
 
 public class HamboningWorld extends GameWorld {
@@ -69,6 +70,13 @@ public class HamboningWorld extends GameWorld {
 //        SoundComponent backgroundSC = new SoundComponent(HamboningConstants.SFX_PATH_HAMBONING);
 //        mordecai.addComponent(backgroundSC);
 //        soundSystem.addObject(mordecai);
+
+        MoveableComponent mc = new MoveableComponent(mordecai, 0.5);
+        mordecai.addComponent(mc);
+
+        CharacterInputComponent mordecaiIC = new CharacterInputComponent(mordecai, this);
+        mordecai.addComponent(mordecaiIC);
+        i.addObject(mordecai);
 
         CenterComponent mordCC = new CenterComponent(this.vp, mordecai);
         mordecai.addComponent(mordCC);
