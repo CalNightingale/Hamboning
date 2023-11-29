@@ -88,27 +88,15 @@ public class HamboningWorld extends GameWorld {
 
         this.addObjects(mordecai);
 
-        //creating platform
-//        GameObject ninPlat = new GameObject(HamboningConstants.PLATFORM_POS, HamboningConstants.PLATFORM_SIZE, this);
-//
-//        UIRectangle ninPlatEl = new UIRectangle(ninPlat.tc.getPosition(), ninPlat.tc.getSize(), HamboningConstants.NIN_PLATFORM_COLOR, getScreenSize());
-//
-//        AAB ninPlatColl = new AAB(ninPlat.tc.getPosition(), ninPlat.tc.getSize(), true);
-//        CollisionComponent ninPlatCC = new CollisionComponent(ninPlatColl, ninPlat);
-//        ninPlat.addComponent(ninPlatCC);
-//        c.addObjectToLayer(ninPlat, 1);
-//
-//        PhysicsComponent ninPlatPC = new PhysicsComponent(HamboningConstants.PLATFORM_MASS, HamboningConstants.PLATFORM_REST, ninPlat.tc);
-//        ninPlat.addComponent(ninPlatPC);
-//        p.addPhysicsObject(ninPlat, 0, true);
-//
-//
-//        GraphicsComponent ninPlatGC = new GraphicsComponent(ninPlat.tc, getScreenSize(), ninPlatEl);
-//        ninPlat.addComponent(ninPlatGC);
-//        g.addObjectToLayer(ninPlat, 1);
-//        addObjects(ninPlat);
-
-
+        GameObject cart = new GameObject(HamboningConstants.CART_POS, HamboningConstants.CART_SIZE, this);
+        SpriteComponent cartSprite = new SpriteComponent(new Vec2d(0), new Vec2d(100,90), Color.WHITE,
+                this.getScreenSize(), cart.tc, false);
+        cart.addComponent(cartSprite);
+        s.addAndLoad(cart, "hamboning/assets/MapAssets/hamboning-golfcart.png");
+        GraphicsComponent cartGC = new GraphicsComponent(cart.tc, getScreenSize(), cartSprite);
+        cart.addComponent(cartGC);
+        g.addObjectToLayer(cart, 1);
+        this.addObjects(cart);
     }
 
 
