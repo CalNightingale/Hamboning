@@ -18,5 +18,5 @@ public class HamboningConstants {
     public static final String SFX_PATH_HAMBONING = "hamboning/assets/hamboning.wav";
     public static final Vec2d CART_POS = new Vec2d(12,18);
     public static final Vec2d CART_SIZE = new Vec2d(1,1);
-    public static final double ENTER_CART_MAX_DIST = 1;
+    public static final double ENTER_CART_MAX_DIST = 0.75;
 }

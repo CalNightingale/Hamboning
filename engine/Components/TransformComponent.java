@@ -21,6 +21,8 @@ public class TransformComponent {
 
   public Vec2d getSize(){return this.size;}
 
+  public Vec2d getCenter(){return this.pos.plus(this.size.smult(0.5));}
+
   public void setPos(Vec2d pos){
     this.pos = pos;
     CollisionComponent cc = this.o.getComponent(CompEnum.Collision);
