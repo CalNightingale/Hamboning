@@ -116,7 +116,16 @@ public class HamboningWorld extends GameWorld {
     }
 
     private void getInCart() {
+        // un-center mordecai
+        CenterComponent mordCC = mordecai.getComponent(CompEnum.Center);
+        mordecai.removeComponent(mordCC);
+        // deregister mordecai from input listening
         i.removeObject(mordecai);
+
+        // center cart
+        CenterComponent cartCC = new CenterComponent(this.vp, cart);
+        cart.addComponent(cartCC);
+        // register cart for input listening
         i.addObject(cart);
     }
 
