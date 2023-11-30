@@ -15,7 +15,7 @@ public class MoveableComponent implements Component<MoveableComponent>{
 
 
 
-  private GameObject o;
+  protected GameObject o;
   private TransformComponent tc;
 
   public MovementDir currDir = MovementDir.NONE;
