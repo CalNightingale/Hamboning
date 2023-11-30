@@ -117,6 +117,9 @@ public class HamboningWorld extends GameWorld {
     }
 
     private void getInCart() {
+        // Determine whether character is close enough to enter cart
+        double dist = mordecai.tc.getPosition().dist(cart.tc.getPosition());
+        if (dist > HamboningConstants.ENTER_CART_MAX_DIST) return;
         // deregister mordecai from input listening
         i.removeObject(mordecai);
         // move mordecai into center of cart

@@ -13,6 +13,7 @@ public class CartMoveableComponent extends MoveableComponent {
     @Override
     public void onTick(long nanos) {
         super.onTick(nanos);
+        // if moving, set character position to cart position
         if (this.getNumDirs() > 0) {
             character.tc.setPos(this.o.tc.getPosition());
         }
