@@ -12,6 +12,7 @@ import engine.UILibrary.UICircle;
 import engine.UILibrary.UIPolygon;
 import engine.UILibrary.UIRectangle;
 import engine.support.Vec2d;
+import hamboning.Components.CartMoveableComponent;
 import hamboning.Components.CharacterInputComponent;
 import javafx.scene.paint.Color;
 
@@ -106,9 +107,9 @@ public class HamboningWorld extends GameWorld {
         g.addObjectToLayer(cart, 1);
 
         // Movement
-        MoveableComponent cartMC = new MoveableComponent(cart, 1);
+        MoveableComponent cartMC = new CartMoveableComponent(cart, 1, mordecai);
         cart.addComponent(cartMC);
-        CharacterInputComponent cartIC = new CharacterInputComponent(cart, this, null);
+        CharacterInputComponent cartIC = new CharacterInputComponent(cart, this, this::getOutOfCart);
         cart.addComponent(cartIC);
 
         this.addObjects(cart);
@@ -116,17 +117,19 @@ public class HamboningWorld extends GameWorld {
     }
 
     private void getInCart() {
-        // un-center mordecai
-        CenterComponent mordCC = mordecai.getComponent(CompEnum.Center);
-        mordecai.removeComponent(mordCC);
         // deregister mordecai from input listening
         i.removeObject(mordecai);
-
-        // center cart
-        CenterComponent cartCC = new CenterComponent(this.vp, cart);
-        cart.addComponent(cartCC);
+        // move mordecai into center of cart
+        mordecai.tc.setPos(cart.tc.getPosition());
         // register cart for input listening
         i.addObject(cart);
+    }
+
+    private void getOutOfCart() {
+        // deregister cart from input listening
+        i.removeObject(cart);
+        // register mordecai for input listening
+        i.addObject(mordecai);
     }
 
     private void setupSystems(){
