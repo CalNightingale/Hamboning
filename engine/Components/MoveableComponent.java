@@ -124,6 +124,10 @@ public class MoveableComponent implements Component<MoveableComponent>{
     return numDirs;
   }
 
+  public boolean isMoving() {
+    return getNumDirs() > 0;
+  }
+
   @Override
   public void onTick(long nanos) {
     //System.out.println(currDir);
