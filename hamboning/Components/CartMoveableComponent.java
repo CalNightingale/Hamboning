@@ -1,9 +1,11 @@
 package hamboning.Components;
 
+import engine.Components.DecayComponent;
 import engine.Components.GraphicsComponent;
 import engine.Components.MoveableComponent;
 import engine.GameObject;
 import engine.Shapes.AAB;
+import engine.Systems.DecaySystem;
 import engine.Systems.GraphicsSystem;
 import engine.Systems.SystemEnum;
 import engine.UILibrary.UIElement;
@@ -29,19 +31,25 @@ public class CartMoveableComponent extends MoveableComponent {
     }
 
     private void makeTrack(Vec2d trackPos) {
-        GameObject track1 = new GameObject(trackPos, HamboningConstants.TRACK_SIZE, this.o.getGW());
+        GameObject track = new GameObject(trackPos, HamboningConstants.TRACK_SIZE, this.o.getGW());
+        // graphics
         UIElement trackElement = new UIRectangle(trackPos, HamboningConstants.TRACK_SIZE, Color.BROWN, this.o.getGW().getScreenSize());
-        GraphicsComponent trackGC = new GraphicsComponent(track1.getTransform(), new Vec2d(0), trackElement);
-        track1.addComponent(trackGC);
+        GraphicsComponent trackGC = new GraphicsComponent(track.getTransform(), new Vec2d(0), trackElement);
+        track.addComponent(trackGC);
         GraphicsSystem g = this.o.getGW().getSystem(SystemEnum.Graphics);
-        g.addObjectToLayer(track1,1);
+        g.addObjectToLayer(track,1);
+        // decay
+        DecayComponent trackD = new DecayComponent(1, track, this.o.getGW());
+        track.addComponent(trackD);
+        DecaySystem d = this.o.getGW().getSystem(SystemEnum.Decay);
+        d.addObject(track);
     }
 
     @Override
     public void moveUp(double amt) {
         // do actual movement
         super.moveUp(amt);
-        // create track
+        // create tracks
         double bottomY = this.o.tc.getPosition().y + this.o.tc.getSize().y;
         double x1 = this.o.tc.getPosition().x;
         double x2 = this.o.tc.getPosition().x + this.o.tc.getSize().x - HamboningConstants.TRACK_SIZE.x;

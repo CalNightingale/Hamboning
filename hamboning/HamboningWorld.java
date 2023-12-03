@@ -18,6 +18,7 @@ import javafx.scene.paint.Color;
 
 public class HamboningWorld extends GameWorld {
     private PhysicsSystem p;
+    private DecaySystem d;
     private GraphicsSystem g;
     private SpriteSystem s;
     private InputSystem i;
@@ -149,6 +150,8 @@ public class HamboningWorld extends GameWorld {
         addSystem(i);
         this.soundSystem = new SoundSystem();
         addSystem(soundSystem);
+        this.d = new DecaySystem();
+        addSystem(d);
     }
 
 }
