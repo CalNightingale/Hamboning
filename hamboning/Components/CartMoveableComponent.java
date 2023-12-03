@@ -30,7 +30,7 @@ public class CartMoveableComponent extends MoveableComponent {
         }
     }
 
-    private void makeTrack(Vec2d trackPos) {
+    private void spawnTrack(Vec2d trackPos) {
         GameObject track = new GameObject(trackPos, HamboningConstants.TRACK_SIZE, this.o.getGW());
         // graphics
         UIElement trackElement = new UIRectangle(trackPos, HamboningConstants.TRACK_SIZE, Color.BROWN, this.o.getGW().getScreenSize());
@@ -39,10 +39,21 @@ public class CartMoveableComponent extends MoveableComponent {
         GraphicsSystem g = this.o.getGW().getSystem(SystemEnum.Graphics);
         g.addObjectToLayer(track,1);
         // decay
-        DecayComponent trackD = new DecayComponent(1, track, this.o.getGW());
+        DecayComponent trackD = new DecayComponent(HamboningConstants.TRACK_DECAY_TIME, track, this.o.getGW());
         track.addComponent(trackD);
         DecaySystem d = this.o.getGW().getSystem(SystemEnum.Decay);
         d.addObject(track);
+    }
+
+    private void makeTracks() {
+        // TODO rework once cart sprite implemented
+        double bottomY = this.o.tc.getPosition().y + this.o.tc.getSize().y;
+        double x1 = this.o.tc.getPosition().x;
+        double x2 = this.o.tc.getPosition().x + this.o.tc.getSize().x - HamboningConstants.TRACK_SIZE.x;
+        Vec2d track1Pos = new Vec2d(x1, bottomY);
+        Vec2d track2Pos = new Vec2d(x2, bottomY);
+        spawnTrack(track1Pos);
+        spawnTrack(track2Pos);
     }
 
     @Override
@@ -50,12 +61,31 @@ public class CartMoveableComponent extends MoveableComponent {
         // do actual movement
         super.moveUp(amt);
         // create tracks
-        double bottomY = this.o.tc.getPosition().y + this.o.tc.getSize().y;
-        double x1 = this.o.tc.getPosition().x;
-        double x2 = this.o.tc.getPosition().x + this.o.tc.getSize().x - HamboningConstants.TRACK_SIZE.x;
-        Vec2d track1Pos = new Vec2d(x1, bottomY);
-        Vec2d track2Pos = new Vec2d(x2, bottomY);
-        makeTrack(track1Pos);
-        makeTrack(track2Pos);
+        makeTracks();
     }
+
+    @Override
+    public void moveDown(double amt) {
+        // do actual movement
+        super.moveDown(amt);
+        // create tracks
+        makeTracks();
+    }
+
+    @Override
+    public void moveLeft(double amt) {
+        // do actual movement
+        super.moveLeft(amt);
+        // create tracks
+        makeTracks();
+    }
+
+    @Override
+    public void moveRight(double amt) {
+        // do actual movement
+        super.moveRight(amt);
+        // create tracks
+        makeTracks();
+    }
+
 }

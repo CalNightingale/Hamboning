@@ -15,4 +15,5 @@ public class HamboningConstants {
     public static final Vec2d CART_SIZE = new Vec2d(1,1);
     public static final double ENTER_CART_MAX_DIST = 0.75;
     public static final Vec2d TRACK_SIZE = new Vec2d(0.1,0.1);
+    public static final double TRACK_DECAY_TIME = 0.5;
 }
