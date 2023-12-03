@@ -124,6 +124,10 @@ public class MoveableComponent implements Component<MoveableComponent>{
     return numDirs;
   }
 
+  public boolean isMoving() {
+    return getNumDirs() > 0;
+  }
+
   @Override
   public void onTick(long nanos) {
     //System.out.println(currDir);
@@ -171,8 +175,6 @@ public class MoveableComponent implements Component<MoveableComponent>{
     double newY = this.tc.getPosition().y;
     newY -= amt;
     this.tc.setPos(new Vec2d(newX, newY));
-
-
   }
 
 
@@ -181,7 +183,6 @@ public class MoveableComponent implements Component<MoveableComponent>{
     double newY = this.tc.getPosition().y;
     newY += amt;
     this.tc.setPos(new Vec2d(newX, newY));
-
   }
 
   public void moveLeft(double amt){
@@ -189,7 +190,6 @@ public class MoveableComponent implements Component<MoveableComponent>{
     double newY = this.tc.getPosition().y;
     newX -= amt;
     this.tc.setPos(new Vec2d(newX, newY));
-
   }
 
   public void moveRight(double amt){
@@ -197,7 +197,6 @@ public class MoveableComponent implements Component<MoveableComponent>{
     double newY = this.tc.getPosition().y;
     newX += amt;
     this.tc.setPos(new Vec2d(newX, newY));
-
   }
   @Override
   public void onDraw(GraphicsContext g) {
