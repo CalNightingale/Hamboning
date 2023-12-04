@@ -12,11 +12,13 @@ import engine.UILibrary.UICircle;
 import engine.UILibrary.UIPolygon;
 import engine.UILibrary.UIRectangle;
 import engine.support.Vec2d;
+import hamboning.Components.CartMoveableComponent;
 import hamboning.Components.CharacterInputComponent;
 import javafx.scene.paint.Color;
 
 public class HamboningWorld extends GameWorld {
     private PhysicsSystem p;
+    private DecaySystem d;
     private GraphicsSystem g;
     private SpriteSystem s;
     private InputSystem i;
@@ -24,6 +26,9 @@ public class HamboningWorld extends GameWorld {
     private SoundSystem soundSystem;
     private boolean firstTick = true;
     private HamboningMapLoader mapLoader;
+
+    private GameObject mordecai;
+    private GameObject cart;
 
 
 
@@ -62,7 +67,7 @@ public class HamboningWorld extends GameWorld {
 //        addObjects(ninBackground);
 
 
-        GameObject mordecai = new GameObject(HamboningConstants.MORD_POS, HamboningConstants.MORD_SIZE, this);
+        mordecai = new GameObject(HamboningConstants.MORD_POS, HamboningConstants.MORD_SIZE, this);
         SpriteComponent mordSprite = new SpriteComponent(new Vec2d(80, 80), new Vec2d(30, 50), Color.MAROON,
             this.getScreenSize(), mordecai.tc, false);
         mordecai.addComponent(mordSprite);
@@ -74,7 +79,7 @@ public class HamboningWorld extends GameWorld {
         MoveableComponent mc = new MoveableComponent(mordecai, 0.5);
         mordecai.addComponent(mc);
 
-        CharacterInputComponent mordecaiIC = new CharacterInputComponent(mordecai, this);
+        CharacterInputComponent mordecaiIC = new CharacterInputComponent(mordecai, this, this::getInCart);
         mordecai.addComponent(mordecaiIC);
         i.addObject(mordecai);
 
@@ -88,30 +93,48 @@ public class HamboningWorld extends GameWorld {
 
         this.addObjects(mordecai);
 
-        //creating platform
-//        GameObject ninPlat = new GameObject(HamboningConstants.PLATFORM_POS, HamboningConstants.PLATFORM_SIZE, this);
-//
-//        UIRectangle ninPlatEl = new UIRectangle(ninPlat.tc.getPosition(), ninPlat.tc.getSize(), HamboningConstants.NIN_PLATFORM_COLOR, getScreenSize());
-//
-//        AAB ninPlatColl = new AAB(ninPlat.tc.getPosition(), ninPlat.tc.getSize(), true);
-//        CollisionComponent ninPlatCC = new CollisionComponent(ninPlatColl, ninPlat);
-//        ninPlat.addComponent(ninPlatCC);
-//        c.addObjectToLayer(ninPlat, 1);
-//
-//        PhysicsComponent ninPlatPC = new PhysicsComponent(HamboningConstants.PLATFORM_MASS, HamboningConstants.PLATFORM_REST, ninPlat.tc);
-//        ninPlat.addComponent(ninPlatPC);
-//        p.addPhysicsObject(ninPlat, 0, true);
-//
-//
-//        GraphicsComponent ninPlatGC = new GraphicsComponent(ninPlat.tc, getScreenSize(), ninPlatEl);
-//        ninPlat.addComponent(ninPlatGC);
-//        g.addObjectToLayer(ninPlat, 1);
-//        addObjects(ninPlat);
-
-
+        cart = makeCart();
     }
 
+    private GameObject makeCart() {
+        GameObject cart = new GameObject(HamboningConstants.CART_POS, HamboningConstants.CART_SIZE, this);
+        // Graphics
+        SpriteComponent cartSprite = new SpriteComponent(new Vec2d(0), new Vec2d(100,90), Color.WHITE,
+                this.getScreenSize(), cart.tc, false);
+        cart.addComponent(cartSprite);
+        s.addAndLoad(cart, "hamboning/assets/MapAssets/hamboning-golfcart.png");
+        GraphicsComponent cartGC = new GraphicsComponent(cart.tc, getScreenSize(), cartSprite);
+        cart.addComponent(cartGC);
+        g.addObjectToLayer(cart, 1);
 
+        // Movement
+        MoveableComponent cartMC = new CartMoveableComponent(cart, 1, mordecai);
+        cart.addComponent(cartMC);
+        CharacterInputComponent cartIC = new CharacterInputComponent(cart, this, this::getOutOfCart);
+        cart.addComponent(cartIC);
+
+        this.addObjects(cart);
+        return cart;
+    }
+
+    private void getInCart() {
+        // Determine whether character is close enough to enter cart
+        double dist = mordecai.tc.getCenter().dist(cart.tc.getCenter());
+        if (dist > HamboningConstants.ENTER_CART_MAX_DIST) return;
+        // deregister mordecai from input listening
+        i.removeObject(mordecai);
+        // move mordecai into center of cart
+        mordecai.tc.setPos(cart.tc.getPosition());
+        // register cart for input listening
+        i.addObject(cart);
+    }
+
+    private void getOutOfCart() {
+        // deregister cart from input listening
+        i.removeObject(cart);
+        // register mordecai for input listening
+        i.addObject(mordecai);
+    }
 
     private void setupSystems(){
         clearSystems();
@@ -127,6 +150,8 @@ public class HamboningWorld extends GameWorld {
         addSystem(i);
         this.soundSystem = new SoundSystem();
         addSystem(soundSystem);
+        this.d = new DecaySystem();
+        addSystem(d);
     }
 
 }

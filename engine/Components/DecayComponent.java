@@ -24,6 +24,7 @@ public class DecayComponent implements Component<DecayComponent>{
 
   @Override
   public void onTick(long nanos) {
+    System.out.println("DECAY ONTICK");
     accumulatedTime += nanos;
     if (accumulatedTime > seconds){
       gw.addToRemovals(go);
