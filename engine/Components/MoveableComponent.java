@@ -138,10 +138,12 @@ public class MoveableComponent implements Component<MoveableComponent>{
 
 
     if (shouldMove.get(MovementDir.UP)) {
+      System.out.println("MOVE UP");
       moveUp(moveAmount);
       currDir = MovementDir.UP;
     }
     if (shouldMove.get(MovementDir.DOWN)) {
+      System.out.println("MOVE DOWN");
       moveDown(moveAmount);
 
       currDir = MovementDir.DOWN;

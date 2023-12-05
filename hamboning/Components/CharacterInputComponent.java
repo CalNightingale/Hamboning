@@ -26,12 +26,24 @@ public class CharacterInputComponent  extends InputComponent {
     this.cartFunc = cartFunc;
   }
 
-  private void updateMovementDirections(KeyEvent e, boolean newSeting) {
+  private void updateMovementDirections(KeyEvent e, boolean newSetting) {
     switch (e.getCode()) {
-      case UP: this.mc.setUP(newSeting);
-      case DOWN: this.mc.setDOWN(newSeting);
-      case LEFT: this.mc.setLEFT(newSeting);
-      case RIGHT: this.mc.setRIGHT(newSeting);
+      case UP: {
+        this.mc.setUP(newSetting);
+        break;
+      }
+      case DOWN: {
+        this.mc.setDOWN(newSetting);
+        break;
+      }
+      case LEFT: {
+        this.mc.setLEFT(newSetting);
+        break;
+      }
+      case RIGHT: {
+        this.mc.setRIGHT(newSetting);
+        break;
+      }
     }
   }
 
