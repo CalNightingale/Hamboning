@@ -72,7 +72,10 @@ public class SoundComponent implements Component<SoundComponent>{
 
     @Override
     public Element serialize(Element el) {
-        return null;
+        el.setAttribute("id", "SoundComponent");
+        el.setAttribute("filepath", filePath);
+        el.setAttribute("loaded", String.valueOf(loaded));
+        return el;
     }
 
     @Override

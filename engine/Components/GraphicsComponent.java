@@ -41,6 +41,7 @@ public class GraphicsComponent implements Component<GraphicsComponent>{
       Element shapeEl = (Element) el;
       String shapeType = shapeEl.getAttribute("id");
 
+      System.out.println("shsape type: " + shapeType);
       switch(shapeType){
         case "Rectangle":
           this.element = new UIRectangle(shapeEl, screenSize);
@@ -52,6 +53,9 @@ public class GraphicsComponent implements Component<GraphicsComponent>{
           break;
         case "Polygon":
           this.element = new UIPolygon(shapeEl, screenSize);
+          break;
+        case "SpriteComponent":
+          this.element = new SpriteComponent(shapeEl, this.tc, screenSize);
           break;
         default:
           System.out.println("bad news drawing shapes in load (graphicsComponent)");
@@ -77,6 +81,7 @@ public class GraphicsComponent implements Component<GraphicsComponent>{
     if (this.element != null){
       Element shape = doc.createElement("ShapeEl");
       shape = this.element.serialize(shape);
+      System.out.println("shape" + shape);
       el.appendChild(shape);
     } else {
       Element imagePath = doc.createElement("imagePath");

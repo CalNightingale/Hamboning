@@ -71,7 +71,7 @@ public class ProjectileComponent implements Component<ProjectileComponent>{
     MoveableComponent pMC = new MoveableComponent(p, projSpeed);
     p.addComponent(pMC);
 
-    CollisionComponent pCC = new CollisionComponent(new AAB(pPos, pSize, true), p);
+    CollisionComponent pCC = new CollisionComponent(new AAB(pPos, pSize, true, "projectile"), p);
     p.addComponent(pCC);
     c.addObjectToLayer(p, 2);
 

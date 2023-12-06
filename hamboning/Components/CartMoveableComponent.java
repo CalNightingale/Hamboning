@@ -4,6 +4,7 @@ import engine.Components.DecayComponent;
 import engine.Components.GraphicsComponent;
 import engine.Components.MoveableComponent;
 import engine.GameObject;
+import engine.GameWorld;
 import engine.Shapes.AAB;
 import engine.Systems.DecaySystem;
 import engine.Systems.GraphicsSystem;
@@ -13,12 +14,19 @@ import engine.UILibrary.UIRectangle;
 import engine.support.Vec2d;
 import hamboning.HamboningConstants;
 import javafx.scene.paint.Color;
+import org.w3c.dom.Element;
 
 public class CartMoveableComponent extends MoveableComponent {
     private final GameObject character;
     public CartMoveableComponent(GameObject cart, double moveAmount, GameObject character) {
         super(cart, moveAmount);
         this.character = character;
+    }
+
+    public CartMoveableComponent(Element data, GameObject thisO, GameWorld gw){
+        super(thisO, 0);
+        this.character = null;
+
     }
 
     @Override

@@ -9,6 +9,7 @@ import engine.GameWorld;
 import java.util.HashMap;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import org.w3c.dom.Element;
 
 public class CharacterInputComponent  extends InputComponent {
   private GameObject o;
@@ -17,13 +18,20 @@ public class CharacterInputComponent  extends InputComponent {
   private GameWorld gw;
 
   private final Runnable cartFunc;
-
   public CharacterInputComponent(GameObject o, GameWorld gw, Runnable cartFunc){
     this.gw = gw;
     this.o = o;
     this.mc = this.o.getComponent(CompEnum.Moveable);
     this.tc = this.o.getTransform();
     this.cartFunc = cartFunc;
+  }
+
+  public CharacterInputComponent(Element data, GameObject o, GameWorld gameWorld){
+    super(data, o.tc);
+    this.mc = o.getComponent(CompEnum.Moveable);
+    this.tc = o.getTransform();
+    this.cartFunc = null;
+
   }
 
   private void updateMovementDirections(KeyEvent e, boolean newSetting) {

@@ -9,11 +9,13 @@ public class Circle extends Shape{
   protected Vec2d center;
   protected float radius;
   public boolean isStatic;
+  public String tag;
 
-  public Circle(Vec2d center, float radius, boolean isStatic) {
+  public Circle(Vec2d center, float radius, boolean isStatic, String tag) {
     this.isStatic = isStatic;
     this.center = center;
     this.radius = radius;
+    this.tag = tag;
   }
 
   public Circle(Vec2d topLeft, Vec2d size, boolean isStatic){
@@ -31,10 +33,13 @@ public class Circle extends Shape{
     this.isStatic = Boolean.parseBoolean(el.getAttribute("isStatic"));
     this.center = new Vec2d(el.getAttribute("center"));
     this.radius = Float.parseFloat(el.getAttribute("radius"));
+    this.tag = el.getAttribute("tag");
 
   }
 
   /////
+
+  public String getTag(){return tag;}
 
   public boolean isStatic(){return this.isStatic;}
   public Vec2d getCenter() {
@@ -84,6 +89,7 @@ public class Circle extends Shape{
     el.setAttribute("center", this.center.toString());
     el.setAttribute("radius", Double.toString(this.radius));
     el.setAttribute("isStatic", Boolean.toString(this.isStatic));
+    el.setAttribute("tag", tag);
 
     return el;
   }
