@@ -16,4 +16,11 @@ public class HamboningConstants {
     public static final double ENTER_CART_MAX_DIST = 0.75;
     public static final Vec2d TRACK_SIZE = new Vec2d(0.1,0.1);
     public static final double TRACK_DECAY_TIME = 0.5;
+
+    // MENU BUTTON STUFF
+    public static final Color BUTTON_COLOR = Color.PALETURQUOISE;
+    public static final Color BUTTON_TEXT_COLOR = Color.DARKBLUE;
+    public static final double SCREEN_TO_BUTTON_WIDTH_RATIO = 0.5;
+    public static final double BUTTON_TOPBOUND_SCREENHEIGHT_RATIO = 0.3;
+    public static final double BUTTON_SPACING_SCREENHEIGHT_RATIO = 0.05;
 }
