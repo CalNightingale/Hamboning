@@ -24,15 +24,15 @@ public class HamboningScreen extends Screen {
     private boolean firstTick = true;
     public HamboningScreen(Application app, Vec2d screenSize){
         super(app, screenSize);
-        app.setActiveScreen(this);
+
+        this.sl = new SaveLoad();
 
 
-        Vec2d ninPortSize = new Vec2d(screenSize.y, screenSize.y);
-        Vec2d ninPortPos =  new Vec2d((screenSize.x/2) - (ninPortSize.x/2),0);
+        Vec2d vpSize = new Vec2d(screenSize.y, screenSize.y);
+        Vec2d vpPos =  new Vec2d((screenSize.x/2) - (vpSize.x/2),0);
 
-        Vec2d gameWorldSize = HamboningConstants.GW_SIZE;
-        this.gw = new HamboningWorld(gameWorldSize, screenSize, true);
-        this.vp = new Viewport(ninPortPos, ninPortSize, screenSize, gw);
+        this.gw = new HamboningWorld(HamboningConstants.GW_SIZE, screenSize, true);
+        this.vp = new Viewport(vpPos, vpSize, screenSize, gw);
 
         gw.givePort(this.vp); //would love to avoid this
         addElements(this.vp);
@@ -50,20 +50,7 @@ public class HamboningScreen extends Screen {
         UIButton loadButton = new UIButton(loadPos, saveSize, Color.DARKBLUE, screenSize, Color.PALETURQUOISE,  "LOAD", new Vec2d(0));
         addElements(loadButton);
         loadButton.setClickAction(() -> {
-            System.out.println("loading");
-            removeEl(this.vp);
-            this.gw = new HamboningWorld(gameWorldSize, screenSize, false);
-            this.vp = new Viewport(ninPortPos, ninPortSize, screenSize, this.gw);
-            gw.givePort(this.vp);
-            sl.load(HamboningConstants.SAVE_PATH, this.gw);
-            addElements(this.vp);
-            System.out.println("finished loading");
-
-            if (loadButton.getColor() == Color.DARKBLUE){
-                loadButton.setColor(Color.NAVY);
-            } else {
-                loadButton.setColor(Color.DARKBLUE);
-            }
+            this.load(loadButton);
         });
 
         saveButton.setClickAction(() -> {
@@ -80,10 +67,26 @@ public class HamboningScreen extends Screen {
             }
 
         });
+    }
 
+    public void load(UIButton loadButton) {
+        System.out.println("loading");
+        Vec2d vpPos = this.vp.getPosition();
+        Vec2d vpSize = this.vp.getSize();
+        removeEl(this.vp);
+        this.gw = new HamboningWorld(HamboningConstants.GW_SIZE, this.getScreenSize(), false);
+        this.vp = new Viewport(vpPos, vpSize, this.getScreenSize(), this.gw);
+        gw.givePort(this.vp);
+        sl.load(HamboningConstants.SAVE_PATH, this.gw);
+        addElements(this.vp);
+        System.out.println("finished loading");
 
-
-
+        // change button color
+        if (loadButton.getColor() == Color.DARKBLUE){
+            loadButton.setColor(Color.NAVY);
+        } else {
+            loadButton.setColor(Color.DARKBLUE);
+        }
     }
 
     @Override
@@ -92,8 +95,6 @@ public class HamboningScreen extends Screen {
 
         if (this.firstTick){
             this.firstTick = false;
-
-            this.sl = new SaveLoad();
 
             try {
                 sl.saveGameState(HamboningConstants.SAVE_PATH, gw);

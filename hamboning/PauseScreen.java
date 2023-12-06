@@ -10,9 +10,14 @@ import javafx.scene.paint.Color;
 
 public class PauseScreen extends Screen {
     private boolean firstTick;
-    public PauseScreen(Application app, Vec2d screenSize) {
+    private final HamboningScreen hs;
+    private final Application app;
+
+    public PauseScreen(Application app, Vec2d screenSize, HamboningScreen hs) {
         super(app, screenSize);
         firstTick = true;
+        this.hs = hs;
+        this.app = app;
     }
 
     private void initializeScreen() {
@@ -59,6 +64,10 @@ public class PauseScreen extends Screen {
                 HamboningConstants.BUTTON_COLOR, screenSize, HamboningConstants.BUTTON_TEXT_COLOR,
                 "LOAD", new Vec2d(0));
         addElements(loadButton);
+        loadButton.setClickAction(() -> {
+            this.hs.load(loadButton);
+            this.app.setActiveScreen(this.hs);
+        });
         // quit
         double quitY = buttonTopBound + (buttonHeight + buttonOffset) * 3;
         UIButton quitButton = new UIButton(new Vec2d(buttonX, quitY), buttonSize,
