@@ -28,10 +28,10 @@ public class CharacterInputComponent  extends InputComponent {
 
   private void updateMovementDirections(KeyEvent e, boolean newSeting) {
     switch (e.getCode()) {
-      case UP: this.mc.setUP(newSeting);
-      case DOWN: this.mc.setDOWN(newSeting);
-      case LEFT: this.mc.setLEFT(newSeting);
-      case RIGHT: this.mc.setRIGHT(newSeting);
+      case UP -> this.mc.setUP(newSeting);
+      case DOWN -> this.mc.setDOWN(newSeting);
+      case LEFT -> this.mc.setLEFT(newSeting);
+      case RIGHT -> this.mc.setRIGHT(newSeting);
     }
   }
 
