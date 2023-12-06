@@ -14,6 +14,7 @@ import engine.UILibrary.UIRectangle;
 import engine.support.Vec2d;
 import hamboning.Components.CartMoveableComponent;
 import hamboning.Components.CharacterInputComponent;
+import hamboning.Components.TileCollisionComponent;
 import javafx.scene.paint.Color;
 
 public class HamboningWorld extends GameWorld {
@@ -85,6 +86,11 @@ public class HamboningWorld extends GameWorld {
 
         CenterComponent mordCC = new CenterComponent(this.vp, mordecai);
         mordecai.addComponent(mordCC);
+
+        AAB mordAAB = new AAB(mordecai.tc.getPosition(), mordecai.tc.getSize(), false, "mordecai");
+        TileCollisionComponent mordColC = new TileCollisionComponent(mordAAB, mordecai);
+        mordecai.addComponent(mordColC);
+        c.addObjectToLayer(mordecai, 1);
 
         s.addAndLoad(mordecai, "hamboning/assets/CharacterAssets/mordecai.png");
         GraphicsComponent mordGC = new GraphicsComponent(mordecai.tc, getScreenSize(), mordSprite);

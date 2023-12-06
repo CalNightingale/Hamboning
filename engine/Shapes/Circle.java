@@ -9,11 +9,13 @@ public class Circle extends Shape{
   protected Vec2d center;
   protected float radius;
   public boolean isStatic;
+  public String tag;
 
-  public Circle(Vec2d center, float radius, boolean isStatic) {
+  public Circle(Vec2d center, float radius, boolean isStatic, String tag) {
     this.isStatic = isStatic;
     this.center = center;
     this.radius = radius;
+    this.tag = tag;
   }
 
   public Circle(Vec2d topLeft, Vec2d size, boolean isStatic){
@@ -35,6 +37,8 @@ public class Circle extends Shape{
   }
 
   /////
+
+  public String getTag(){return tag;}
 
   public boolean isStatic(){return this.isStatic;}
   public Vec2d getCenter() {

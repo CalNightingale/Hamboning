@@ -12,11 +12,13 @@ import org.w3c.dom.Element;
 public class Polygon extends Shape {
   public boolean isStatic;
   protected Vec2d[] points;
+  public String tag;
   Vec2d min;
   Vec2d max;
 
-  public Polygon(boolean isStatic, Vec2d... points ){
+  public Polygon(boolean isStatic, String tag, Vec2d... points ){
     this.isStatic = isStatic;
+    this.tag = tag;
     this.points = points;
     double minX = Double.MAX_VALUE, minY = Double.MAX_VALUE, maxX = 0, maxY = 0;
     for(Vec2d v : points) {
@@ -55,6 +57,7 @@ public class Polygon extends Shape {
     return points[i];
   }
 
+  public String getTag(){return tag;}
   @Override
   public boolean isStatic() {
     return this.isStatic;

@@ -1,16 +1,19 @@
 package hamboning;
 
 import engine.AILibrary.Map;
+import engine.Components.CollisionComponent;
 import engine.Components.GraphicsComponent;
 import engine.Components.SpriteComponent;
 import engine.Components.TransformComponent;
 import engine.GameObject;
 import engine.GameWorld;
+import engine.Shapes.AAB;
 import engine.Systems.CollisionSystem;
 import engine.Systems.GraphicsSystem;
 import engine.Systems.InputSystem;
 import engine.Systems.SpriteSystem;
 import engine.support.Vec2d;
+import hamboning.Components.TileCollisionComponent;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -186,6 +189,12 @@ public class HamboningMapLoader {
     tile.addComponent(spriteComponent);
     s.addObject(tile);
     s.loadSprite(tile, s.getImage("house"));
+
+    AAB tileAAB = new AAB(tile.tc.getPosition(), tile.tc.getSize(), true, "house");
+    TileCollisionComponent tileCC = new TileCollisionComponent(tileAAB, tile);
+    tile.addComponent(tileCC);
+    c.addObjectToLayer(tile, 0);
+
     GraphicsComponent graphics = new GraphicsComponent(tile.getTransform(), this.gw.getScreenSize(), spriteComponent);
     tile.addComponent(graphics);
     g.addObjectToLayer(tile, 1);
@@ -200,6 +209,11 @@ public class HamboningMapLoader {
     tile.addComponent(spriteComponent);
     s.addObject(tile);
     s.loadSprite(tile, s.getImage("shrub"));
+
+    AAB tileAAB = new AAB(tile.tc.getPosition(), tile.tc.getSize(), true, "shrub");
+    TileCollisionComponent tileCC = new TileCollisionComponent(tileAAB, tile);
+    tile.addComponent(tileCC);
+    c.addObjectToLayer(tile, 0);
     GraphicsComponent graphics = new GraphicsComponent(tile.getTransform(), this.gw.getScreenSize(), spriteComponent);
     tile.addComponent(graphics);
     g.addObjectToLayer(tile, 1);
@@ -219,6 +233,12 @@ public class HamboningMapLoader {
       tile.addComponent(spriteComponent);
       s.addObject(tile);
       s.loadSprite(tile, s.getImage("tree"));
+
+      AAB tileAAB = new AAB(tile.tc.getPosition(), tile.tc.getSize(), true, "tree");
+      TileCollisionComponent tileCC = new TileCollisionComponent(tileAAB, tile);
+      tile.addComponent(tileCC);
+      c.addObjectToLayer(tile, 0);
+
       GraphicsComponent graphics = new GraphicsComponent(tile.getTransform(),
           this.gw.getScreenSize(), spriteComponent);
       tile.addComponent(graphics);
@@ -234,6 +254,12 @@ public class HamboningMapLoader {
       tile.addComponent(spriteComponent);
       s.addObject(tile);
       s.loadSprite(tile, s.getImage("tree2"));
+
+      AAB tileAAB = new AAB(tile.tc.getPosition(), tile.tc.getSize(), true, "tree");
+      TileCollisionComponent tileCC = new TileCollisionComponent(tileAAB, tile);
+      tile.addComponent(tileCC);
+      c.addObjectToLayer(tile, 0);
+
       GraphicsComponent graphics = new GraphicsComponent(tile.getTransform(),
           this.gw.getScreenSize(), spriteComponent);
       tile.addComponent(graphics);
@@ -241,6 +267,8 @@ public class HamboningMapLoader {
 
 
     }
+
+
   }
 
   private void createRock(int rowCount, int colCount) {
@@ -254,6 +282,11 @@ public class HamboningMapLoader {
       tile.addComponent(spriteComponent);
       s.addObject(tile);
       s.loadSprite(tile, s.getImage("rock"));
+
+      AAB tileAAB = new AAB(tile.tc.getPosition(), tile.tc.getSize(), true, "rock");
+      TileCollisionComponent tileCC = new TileCollisionComponent(tileAAB, tile);
+      tile.addComponent(tileCC);
+      c.addObjectToLayer(tile, 0);
       GraphicsComponent graphics = new GraphicsComponent(tile.getTransform(), this.gw.getScreenSize(), spriteComponent);
       tile.addComponent(graphics);
       g.addObjectToLayer(tile, 1);
@@ -267,6 +300,11 @@ public class HamboningMapLoader {
       tile.addComponent(spriteComponent);
       s.addObject(tile);
       s.loadSprite(tile, s.getImage("rock2"));
+
+      AAB tileAAB = new AAB(tile.tc.getPosition(), tile.tc.getSize(), true, "rock");
+      TileCollisionComponent tileCC = new TileCollisionComponent(tileAAB, tile);
+      tile.addComponent(tileCC);
+      c.addObjectToLayer(tile, 0);
       GraphicsComponent graphics = new GraphicsComponent(tile.getTransform(), this.gw.getScreenSize(), spriteComponent);
       tile.addComponent(graphics);
       g.addObjectToLayer(tile, 1);
@@ -283,6 +321,11 @@ public class HamboningMapLoader {
     tile.addComponent(spriteComponent);
     s.addObject(tile);
     s.loadSprite(tile, s.getImage("snack"));
+
+    AAB tileAAB = new AAB(tile.tc.getPosition(), tile.tc.getSize(), true, "snack");
+    TileCollisionComponent tileCC = new TileCollisionComponent(tileAAB, tile);
+    tile.addComponent(tileCC);
+    c.addObjectToLayer(tile, 0);
     GraphicsComponent graphics = new GraphicsComponent(tile.getTransform(), this.gw.getScreenSize(), spriteComponent);
     tile.addComponent(graphics);
     g.addObjectToLayer(tile, 1);
@@ -297,6 +340,11 @@ public class HamboningMapLoader {
     tile.addComponent(spriteComponent);
     s.addObject(tile);
     s.loadSprite(tile, s.getImage("skips"));
+
+    AAB tileAAB = new AAB(tile.tc.getPosition(), tile.tc.getSize(), true, "skips");
+    TileCollisionComponent tileCC = new TileCollisionComponent(tileAAB, tile);
+    tile.addComponent(tileCC);
+    c.addObjectToLayer(tile, 0);
     GraphicsComponent graphics = new GraphicsComponent(tile.getTransform(), this.gw.getScreenSize(), spriteComponent);
     tile.addComponent(graphics);
     g.addObjectToLayer(tile, 1);
@@ -311,6 +359,11 @@ public class HamboningMapLoader {
     tile.addComponent(spriteComponent);
     s.addObject(tile);
     s.loadSprite(tile, s.getImage("playground"));
+
+    AAB tileAAB = new AAB(tile.tc.getPosition(), tile.tc.getSize(), true, "playground");
+    TileCollisionComponent tileCC = new TileCollisionComponent(tileAAB, tile);
+    tile.addComponent(tileCC);
+    c.addObjectToLayer(tile, 0);
     GraphicsComponent graphics = new GraphicsComponent(tile.getTransform(), this.gw.getScreenSize(), spriteComponent);
     tile.addComponent(graphics);
     g.addObjectToLayer(tile, 1);
@@ -325,6 +378,11 @@ public class HamboningMapLoader {
     tile.addComponent(spriteComponent);
     s.addObject(tile);
     s.loadSprite(tile, s.getImage("trailer"));
+
+    AAB tileAAB = new AAB(tile.tc.getPosition(), tile.tc.getSize(), true, "trailer");
+    TileCollisionComponent tileCC = new TileCollisionComponent(tileAAB, tile);
+    tile.addComponent(tileCC);
+    c.addObjectToLayer(tile, 0);
     GraphicsComponent graphics = new GraphicsComponent(tile.getTransform(), this.gw.getScreenSize(), spriteComponent);
     tile.addComponent(graphics);
     g.addObjectToLayer(tile, 1);
@@ -339,6 +397,10 @@ public class HamboningMapLoader {
     tile.addComponent(spriteComponent);
     s.addObject(tile);
     s.loadSprite(tile, s.getImage("tables"));
+    AAB tileAAB = new AAB(tile.tc.getPosition(), tile.tc.getSize(), false, "tables");
+    TileCollisionComponent tileCC = new TileCollisionComponent(tileAAB, tile);
+    tile.addComponent(tileCC);
+    c.addObjectToLayer(tile, 0);
     GraphicsComponent graphics = new GraphicsComponent(tile.getTransform(), this.gw.getScreenSize(), spriteComponent);
     tile.addComponent(graphics);
     g.addObjectToLayer(tile, 1);
@@ -353,6 +415,11 @@ public class HamboningMapLoader {
     tile.addComponent(spriteComponent);
     s.addObject(tile);
     s.loadSprite(tile, s.getImage("leaves"));
+
+    AAB tileAAB = new AAB(tile.tc.getPosition(), tile.tc.getSize(), false, "leaves");
+    TileCollisionComponent tileCC = new TileCollisionComponent(tileAAB, tile);
+    tile.addComponent(tileCC);
+    c.addObjectToLayer(tile, 0);
     GraphicsComponent graphics = new GraphicsComponent(tile.getTransform(), this.gw.getScreenSize(), spriteComponent);
     tile.addComponent(graphics);
     g.addObjectToLayer(tile, 1);
@@ -454,6 +521,13 @@ public class HamboningMapLoader {
     SpriteComponent spriteComponent = new SpriteComponent(location, tilePixelSize,
         Color.MAROON, this.gw.getScreenSize(), tile.getTransform(), true);
     tile.addComponent(spriteComponent);
+
+    AAB tileAAB = new AAB(tile.tc.getPosition(), tile.tc.getSize(), true, "border");
+    TileCollisionComponent tileCC = new TileCollisionComponent(tileAAB, tile);
+    tile.addComponent(tileCC);
+    c.addObjectToLayer(tile, 0);
+
+
     s.addObject(tile);
     s.loadSprite(tile, s.getImage("border"));
     GraphicsComponent graphics = new GraphicsComponent(tile.getTransform(), this.gw.getScreenSize(), spriteComponent);
@@ -470,6 +544,13 @@ public class HamboningMapLoader {
     tile.addComponent(spriteComponent);
     s.addObject(tile);
     s.loadSprite(tile, s.getImage("edge"));
+
+
+    AAB tileAAB = new AAB(tile.tc.getPosition(), tile.tc.getSize(), true, "edge");
+    CollisionComponent tileCC = new CollisionComponent(tileAAB, tile);
+    tile.addComponent(tileCC);
+    c.addObjectToLayer(tile, 0);
+
     GraphicsComponent graphics = new GraphicsComponent(tile.getTransform(), this.gw.getScreenSize(), spriteComponent);
     tile.addComponent(graphics);
     g.addObjectToLayer(tile, 0);

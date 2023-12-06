@@ -13,11 +13,13 @@ public class AAB extends Shape{
   protected Vec2d topLeft;
   protected Vec2d size;
   public boolean isStatic;
+  public String tag;
 
-  public AAB(Vec2d topLeft, Vec2d size, boolean isStatic) {
+  public AAB(Vec2d topLeft, Vec2d size, boolean isStatic, String tag) {
     this.isStatic = isStatic;
     this.topLeft = topLeft;
     this.size = size;
+    this.tag = tag;
   }
 
   public AAB(Element el){
@@ -27,6 +29,7 @@ public class AAB extends Shape{
   }
 
 
+  public String getTag(){return tag;}
   /////
 
   public boolean isStatic(){return this.isStatic;}
@@ -218,7 +221,7 @@ public class AAB extends Shape{
 
   @Override
   public Vec2d getCenter() {
-    return null;
+    return topLeft;
   }
 
 }

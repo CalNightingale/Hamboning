@@ -13,8 +13,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
 public class CollisionComponent implements Component<CollisionComponent>{
-  private Shape s;
-  private GameObject o;
+  public Shape s;
+  public GameObject o;
   public CollisionComponent(Shape s, GameObject o){
     this.o = o;
     this.s = s;
