@@ -14,6 +14,7 @@ import engine.UILibrary.UIRectangle;
 import engine.support.Vec2d;
 import hamboning.Components.CartMoveableComponent;
 import hamboning.Components.CharacterInputComponent;
+import hamboning.Components.MordecaiAnimationComponent;
 import hamboning.Components.TileCollisionComponent;
 import javafx.scene.paint.Color;
 
@@ -72,9 +73,13 @@ public class HamboningWorld extends GameWorld {
 
 
         mordecai = new GameObject(HamboningConstants.MORD_POS, HamboningConstants.MORD_SIZE, this);
-        SpriteComponent mordSprite = new SpriteComponent(new Vec2d(80, 80), new Vec2d(30, 50), Color.MAROON,
-            this.getScreenSize(), mordecai.tc, false);
-        mordecai.addComponent(mordSprite);
+//        SpriteComponent mordSprite = new SpriteComponent(new Vec2d(80, 80), new Vec2d(30, 50), Color.MAROON,
+//            this.getScreenSize(), mordecai.tc, false);
+//        mordecai.addComponent(mordSprite);
+
+        MordecaiAnimationComponent mordSprite2 = new MordecaiAnimationComponent(new Vec2d(0,130), new Vec2d(64,64), Color.MAROON,
+            this.getScreenSize(), mordecai.tc, true, 1, 3, 0.5);
+        mordecai.addComponent(mordSprite2);
 
 //        SoundComponent backgroundSC = new SoundComponent(HamboningConstants.SFX_PATH_HAMBONING);
 //        mordecai.addComponent(backgroundSC);
@@ -96,7 +101,7 @@ public class HamboningWorld extends GameWorld {
         c.addObjectToLayer(mordecai, 1);
 
         s.addAndLoad(mordecai, "hamboning/assets/CharacterAssets/mordecai.png");
-        GraphicsComponent mordGC = new GraphicsComponent(mordecai.tc, getScreenSize(), mordSprite);
+        GraphicsComponent mordGC = new GraphicsComponent(mordecai.tc, getScreenSize(), mordSprite2);
         mordecai.addComponent(mordGC);
         g.addObjectToLayer(mordecai, 1);
 
@@ -108,8 +113,8 @@ public class HamboningWorld extends GameWorld {
     private GameObject makeCart() {
         GameObject cart = new GameObject(HamboningConstants.CART_POS, HamboningConstants.CART_SIZE, this);
         // Graphics
-        SpriteComponent cartSprite = new SpriteComponent(new Vec2d(0), new Vec2d(100,90), Color.WHITE,
-                this.getScreenSize(), cart.tc, false);
+        AnimationComponent cartSprite = new AnimationComponent(new Vec2d(0), new Vec2d(100, 90), Color.MAROON,
+            this.getScreenSize(), cart.tc, false, 1, 1, 0.5);
         cart.addComponent(cartSprite);
         s.addAndLoad(cart, "hamboning/assets/MapAssets/hamboning-golfcart.png");
         GraphicsComponent cartGC = new GraphicsComponent(cart.tc, getScreenSize(), cartSprite);

@@ -133,27 +133,32 @@ public class MoveableComponent implements Component<MoveableComponent>{
     //System.out.println(currDir);
     double moveAmount = this.moveSpeed * nanos / 1000000000;
     int numDirs = getNumDirs();
-    if (numDirs == 0 || numDirs == 4) return;
+    if (numDirs == 0){
+      currDir = MovementDir.NONE;
+      SpriteComponent ac = this.o.getComponent(CompEnum.Sprite);
+      if (ac != null){
+        ac.setDir(currDir);
+      }
+      return;
+
+    }
+    if (numDirs == 4) return;
     if (numDirs == 2) moveAmount /= Math.sqrt(2); //normalizes for diagonal motion
 
 
     if (shouldMove.get(MovementDir.UP)) {
-      System.out.println("MOVE UP");
+      System.out.println("moving up");
       moveUp(moveAmount);
       currDir = MovementDir.UP;
-    }
-    if (shouldMove.get(MovementDir.DOWN)) {
-      System.out.println("MOVE DOWN");
+    } else if (shouldMove.get(MovementDir.DOWN)) {
       moveDown(moveAmount);
 
       currDir = MovementDir.DOWN;
-    }
-    if (shouldMove.get(MovementDir.LEFT)) {
+    } else if (shouldMove.get(MovementDir.LEFT)) {
       moveLeft(moveAmount);
 
       currDir = MovementDir.LEFT;
-    }
-    if (shouldMove.get(MovementDir.RIGHT)){
+    } else if (shouldMove.get(MovementDir.RIGHT)){
       moveRight(moveAmount);
 
       currDir = MovementDir.RIGHT;
