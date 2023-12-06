@@ -41,7 +41,8 @@ public class SpriteSystem extends BaseSystem<SpriteSystem>{
       GameObject obj = gameObjectMap.get(uuid);
       String imPath = objEl.getTextContent();
 
-      loadSprite(obj, imPath);
+      loadSprite(obj, imPath); //here is where it's not working
+
 
 
     }

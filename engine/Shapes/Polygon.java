@@ -35,6 +35,7 @@ public class Polygon extends Shape {
   public Polygon(Element el){
     this.isStatic = Boolean.parseBoolean(el.getAttribute("isStatic"));
     String pointsArray = el.getTextContent();
+    this.tag = el.getAttribute("tag");
     this.points = HelperFunctions.parseVec2dArray(pointsArray);
     double minX = Double.MAX_VALUE, minY = Double.MAX_VALUE, maxX = 0, maxY = 0;
     for(Vec2d v : points) {
@@ -68,6 +69,7 @@ public class Polygon extends Shape {
   public Element serialize(Element el) {
     el.setAttribute("id", "Polygon");
     el.setAttribute("isStatic", Boolean.toString(this.isStatic));
+    el.setAttribute("tag", tag);
     el.setTextContent(HelperFunctions.arrayToString(points));
 
     return el;

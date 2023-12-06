@@ -33,6 +33,7 @@ public class Circle extends Shape{
     this.isStatic = Boolean.parseBoolean(el.getAttribute("isStatic"));
     this.center = new Vec2d(el.getAttribute("center"));
     this.radius = Float.parseFloat(el.getAttribute("radius"));
+    this.tag = el.getAttribute("tag");
 
   }
 
@@ -88,6 +89,7 @@ public class Circle extends Shape{
     el.setAttribute("center", this.center.toString());
     el.setAttribute("radius", Double.toString(this.radius));
     el.setAttribute("isStatic", Boolean.toString(this.isStatic));
+    el.setAttribute("tag", tag);
 
     return el;
   }

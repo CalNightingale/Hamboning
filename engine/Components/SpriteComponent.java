@@ -15,6 +15,7 @@ public class SpriteComponent extends UIElement implements Component<SpriteCompon
   private TransformComponent tc;
   private boolean absoluteSize;
   public MovementDir currDir = MovementDir.NONE;
+  private boolean imageSet = false;
 
   public SpriteComponent(Vec2d position, Vec2d size, Color color, Vec2d screenSize, TransformComponent tc, boolean absolute){
     super(position, size, color, screenSize);
@@ -26,14 +27,17 @@ public class SpriteComponent extends UIElement implements Component<SpriteCompon
 
 
   public SpriteComponent(Element data, TransformComponent tc, Vec2d ss){
-    super(data, ss);
+    super(new Vec2d(data.getAttribute("position")), new Vec2d(data.getAttribute("size")), Color.MAROON, ss);
     this.tc = tc;
     this.absoluteSize = Boolean.parseBoolean(data.getAttribute("abs"));
+
 
   }
 
   @Override
   public Element serialize(Element el) {
+
+    System.out.println("serializing");
     el.setAttribute("id", "SpriteComponent");
     el.setAttribute("topLeft", getPosition().toString());
     el.setAttribute("inFileSize", getSize().toString());
@@ -41,6 +45,7 @@ public class SpriteComponent extends UIElement implements Component<SpriteCompon
     el.setAttribute("size", tc.getSize().toString());
     el.setAttribute("abs", Boolean.toString(absoluteSize));
 
+    System.out.println(el);
     return el;
   }
 
@@ -71,6 +76,7 @@ public class SpriteComponent extends UIElement implements Component<SpriteCompon
       }
     }
     //this.setSpriteCanvas();
+    imageSet = true;
 
 
   }

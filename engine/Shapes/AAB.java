@@ -26,6 +26,7 @@ public class AAB extends Shape{
     this.isStatic = Boolean.parseBoolean(el.getAttribute("isStatic"));
     this.topLeft = new Vec2d(el.getAttribute("topLeft"));
     this.size = new Vec2d(el.getAttribute("size"));
+    this.tag = el.getAttribute("tag");
   }
 
 
@@ -185,6 +186,7 @@ public class AAB extends Shape{
     el.setAttribute("topLeft", this.topLeft.toString());
     el.setAttribute("size", this.size.toString());
     el.setAttribute("isStatic", Boolean.toString(this.isStatic));
+    el.setAttribute("tag", this.tag);
 
     return el;
   }
