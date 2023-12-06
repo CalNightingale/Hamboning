@@ -3,16 +3,37 @@ package hamboning;
 import engine.Application;
 import engine.Screen;
 import engine.UILibrary.UIButton;
+import engine.UILibrary.UIImage;
 import engine.support.Vec2d;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
 public class PauseScreen extends Screen {
+    private boolean firstTick;
     public PauseScreen(Application app, Vec2d screenSize) {
         super(app, screenSize);
-        Vec2d saveSize = screenSize.smult(0.1);
-        Vec2d savePos = screenSize.smult(0.5);
+        firstTick = true;
+    }
 
+    private void initializeScreen() {
+        // background image
+        Image backgroundFXImg = new Image(HamboningConstants.MENU_BACKGROUND_PATH);
+        UIImage backgroundImage = new UIImage(new Vec2d(0), this.getScreenSize(),
+                Color.MAROON, this.getScreenSize(), backgroundFXImg);
+        addElements(backgroundImage);
         // buttons
+        makeButtons(this.getScreenSize());
+    }
+
+    @Override
+    public void onTick(long nanos) {
+        if (this.firstTick) {
+            initializeScreen();
+            firstTick = false;
+        }
+    }
+
+    private void makeButtons(Vec2d screenSize) {
         double buttonWidth = screenSize.x * HamboningConstants.SCREEN_TO_BUTTON_WIDTH_RATIO;
         double buttonTopBound = screenSize.y * HamboningConstants.BUTTON_TOPBOUND_SCREENHEIGHT_RATIO;
         double buttonOffset = screenSize.y * HamboningConstants.BUTTON_SPACING_SCREENHEIGHT_RATIO;

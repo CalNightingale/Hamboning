@@ -23,4 +23,5 @@ public class HamboningConstants {
     public static final double SCREEN_TO_BUTTON_WIDTH_RATIO = 0.5;
     public static final double BUTTON_TOPBOUND_SCREENHEIGHT_RATIO = 0.3;
     public static final double BUTTON_SPACING_SCREENHEIGHT_RATIO = 0.05;
+    public static final String MENU_BACKGROUND_PATH = "hamboning/assets/title_background.jpeg";
 }
