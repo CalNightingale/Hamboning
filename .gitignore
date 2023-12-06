@@ -3,3 +3,4 @@ javafx-sdk-20.0.2/*
 out/
 .idea/
 csci1950n-final-project-fall-2023-hamboning.iml
+.hamboning/saves/save.xml
