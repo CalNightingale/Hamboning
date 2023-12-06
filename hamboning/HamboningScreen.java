@@ -54,19 +54,22 @@ public class HamboningScreen extends Screen {
         });
 
         saveButton.setClickAction(() -> {
-            try {
-                sl.saveGameState(HamboningConstants.SAVE_PATH, this.gw);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-            if (saveButton.getTextColor() == Color.DARKBLUE){
-                saveButton.setTextColor(Color.WHITE);
-            } else {
-                saveButton.setTextColor(Color.DARKBLUE);
-            }
-
+            this.save(saveButton);
         });
+    }
+
+    public void save(UIButton saveButton) {
+        try {
+            sl.saveGameState(HamboningConstants.SAVE_PATH, this.gw);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if (saveButton.getTextColor() == Color.DARKBLUE){
+            saveButton.setTextColor(Color.WHITE);
+        } else {
+            saveButton.setTextColor(Color.DARKBLUE);
+        }
     }
 
     public void load(UIButton loadButton) {

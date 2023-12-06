@@ -90,10 +90,13 @@ public class Application extends FXFrontEnd {
   @Override
   protected void onKeyPressed(KeyEvent e) {
     if (e.getCode() == KeyCode.ESCAPE){
-      System.exit(0);
-
+      this.quit();
     }
     activeScreen.onKeyPressed(e);
+  }
+
+  public void quit() {
+    System.exit(0);
   }
 
 

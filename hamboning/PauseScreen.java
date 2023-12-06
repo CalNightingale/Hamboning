@@ -52,12 +52,19 @@ public class PauseScreen extends Screen {
                 HamboningConstants.BUTTON_COLOR, screenSize, HamboningConstants.BUTTON_TEXT_COLOR,
                 "NEW GAME", new Vec2d(0));
         addElements(newGameButton);
+        newGameButton.setClickAction(() -> {
+            this.app.setActiveScreen(this.hs);
+        });
         // save
         double saveY = buttonTopBound + buttonHeight + buttonOffset;
         UIButton saveButton = new UIButton(new Vec2d(buttonX, saveY), buttonSize,
                 HamboningConstants.BUTTON_COLOR, screenSize, HamboningConstants.BUTTON_TEXT_COLOR,
                 "SAVE", new Vec2d(0));
         addElements(saveButton);
+        saveButton.setClickAction(() -> {
+            this.hs.save(saveButton);
+            this.app.setActiveScreen(this.hs);
+        });
         // load
         double loadY = buttonTopBound + (buttonHeight + buttonOffset) * 2;
         UIButton loadButton = new UIButton(new Vec2d(buttonX, loadY), buttonSize,
@@ -74,5 +81,6 @@ public class PauseScreen extends Screen {
                 HamboningConstants.BUTTON_COLOR, screenSize, HamboningConstants.BUTTON_TEXT_COLOR,
                 "QUIT", new Vec2d(0));
         addElements(quitButton);
+        quitButton.setClickAction(this.app::quit);
     }
 }
