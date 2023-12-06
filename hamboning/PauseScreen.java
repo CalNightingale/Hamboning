@@ -4,6 +4,7 @@ import engine.Application;
 import engine.Screen;
 import engine.UILibrary.UIButton;
 import engine.UILibrary.UIImage;
+import engine.UILibrary.UIText;
 import engine.support.Vec2d;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
@@ -28,6 +29,11 @@ public class PauseScreen extends Screen {
         addElements(backgroundImage);
         // buttons
         makeButtons(this.getScreenSize());
+        // text
+        Vec2d titleLoc = new Vec2d(this.getScreenSize().x/2, 75);
+        UIText title = new UIText(titleLoc, new Vec2d(100), "Hamboning: The Game",
+                HamboningConstants.TITLE_FONT_PATH, Color.WHITE, getScreenSize());
+        addElements(title);
     }
 
     @Override
@@ -52,9 +58,7 @@ public class PauseScreen extends Screen {
                 HamboningConstants.BUTTON_COLOR, screenSize, HamboningConstants.BUTTON_TEXT_COLOR,
                 "NEW GAME", new Vec2d(0));
         addElements(newGameButton);
-        newGameButton.setClickAction(() -> {
-            this.app.setActiveScreen(this.hs);
-        });
+        newGameButton.setClickAction(() -> this.app.setActiveScreen(this.hs));
         // save
         double saveY = buttonTopBound + buttonHeight + buttonOffset;
         UIButton saveButton = new UIButton(new Vec2d(buttonX, saveY), buttonSize,
