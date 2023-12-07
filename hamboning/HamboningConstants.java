@@ -18,12 +18,14 @@ public class HamboningConstants {
     public static final double TRACK_DECAY_TIME = 0.5;
 
     // MENU BUTTON STUFF
-    public static final Color BUTTON_COLOR = Color.PALETURQUOISE;
-    public static final Color BUTTON_TEXT_COLOR = Color.DARKBLUE;
+    public static final Color BUTTON_COLOR = Color.TRANSPARENT;
+    public static final Color BUTTON_TEXT_COLOR = Color.WHITE;
     public static final double SCREEN_TO_BUTTON_WIDTH_RATIO = 0.5;
     public static final double BUTTON_TOPBOUND_SCREENHEIGHT_RATIO = 0.3;
     public static final double BUTTON_SPACING_SCREENHEIGHT_RATIO = 0.05;
     public static final String MENU_BACKGROUND_PATH = "hamboning/assets/title_background.jpeg";
 
     public static final String TITLE_FONT_PATH = "hamboning/assets/IceCreamPartySolid.ttf";
+    public static final String BUTTON_FONT_PATH = "hamboning/assets/IceCreamParty.ttf";
+    public static final int BUTTON_FONT_SIZE = 50;
 }

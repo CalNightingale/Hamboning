@@ -55,14 +55,16 @@ public class PauseScreen extends Screen {
         double buttonX = screenSize.x/2 - buttonWidth/2;
         // new game
         UIButton newGameButton = new UIButton(new Vec2d(buttonX, buttonTopBound), buttonSize,
-                HamboningConstants.BUTTON_COLOR, screenSize, HamboningConstants.BUTTON_TEXT_COLOR,
+                HamboningConstants.BUTTON_COLOR, screenSize, HamboningConstants.BUTTON_FONT_PATH,
+                HamboningConstants.BUTTON_FONT_SIZE, HamboningConstants.BUTTON_TEXT_COLOR,
                 "NEW GAME", new Vec2d(0));
         addElements(newGameButton);
         newGameButton.setClickAction(() -> this.app.setActiveScreen(this.hs));
         // save
         double saveY = buttonTopBound + buttonHeight + buttonOffset;
         UIButton saveButton = new UIButton(new Vec2d(buttonX, saveY), buttonSize,
-                HamboningConstants.BUTTON_COLOR, screenSize, HamboningConstants.BUTTON_TEXT_COLOR,
+                HamboningConstants.BUTTON_COLOR, screenSize, HamboningConstants.BUTTON_FONT_PATH,
+                HamboningConstants.BUTTON_FONT_SIZE, HamboningConstants.BUTTON_TEXT_COLOR,
                 "SAVE", new Vec2d(0));
         addElements(saveButton);
         saveButton.setClickAction(() -> {
@@ -72,7 +74,8 @@ public class PauseScreen extends Screen {
         // load
         double loadY = buttonTopBound + (buttonHeight + buttonOffset) * 2;
         UIButton loadButton = new UIButton(new Vec2d(buttonX, loadY), buttonSize,
-                HamboningConstants.BUTTON_COLOR, screenSize, HamboningConstants.BUTTON_TEXT_COLOR,
+                HamboningConstants.BUTTON_COLOR, screenSize, HamboningConstants.BUTTON_FONT_PATH,
+                HamboningConstants.BUTTON_FONT_SIZE, HamboningConstants.BUTTON_TEXT_COLOR,
                 "LOAD", new Vec2d(0));
         addElements(loadButton);
         loadButton.setClickAction(() -> {
@@ -82,7 +85,8 @@ public class PauseScreen extends Screen {
         // quit
         double quitY = buttonTopBound + (buttonHeight + buttonOffset) * 3;
         UIButton quitButton = new UIButton(new Vec2d(buttonX, quitY), buttonSize,
-                HamboningConstants.BUTTON_COLOR, screenSize, HamboningConstants.BUTTON_TEXT_COLOR,
+                HamboningConstants.BUTTON_COLOR, screenSize, HamboningConstants.BUTTON_FONT_PATH,
+                HamboningConstants.BUTTON_FONT_SIZE, HamboningConstants.BUTTON_TEXT_COLOR,
                 "QUIT", new Vec2d(0));
         addElements(quitButton);
         quitButton.setClickAction(this.app::quit);
