@@ -9,10 +9,10 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 public class SpriteComponent extends UIElement implements Component<SpriteComponent>{
-  private Image sprite;
+  public Image sprite;
 //  private Vec2d spriteScreenPos;
 //  private Vec2d spriteScreenSize;
-  private TransformComponent tc;
+  public TransformComponent tc;
   private boolean absoluteSize;
   public MovementDir currDir = MovementDir.NONE;
   private boolean imageSet = false;

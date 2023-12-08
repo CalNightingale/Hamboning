@@ -18,7 +18,7 @@
          <Component id="MoveableComponent" moveAmount="1.0">{UP=false, DOWN=false, RIGHT=false, LEFT=false}</Component>
          <Component abs="false" id="SpriteComponent" inFileSize="(100.0, 90.0)" position="(12.0, 18.0)" size="(1.0, 0.8999999999999999)" topLeft="(0.0, 0.0)"/>
          <Component id="GraphicsComponent">
-            <ShapeEl abs="false" id="SpriteComponent" inFileSize="(100.0, 90.0)" position="(12.0, 18.0)" size="(1.0, 0.8999999999999999)" topLeft="(0.0, 0.0)"/>
+            <ShapeEl abs="false" framerate="skdfjs" id="SpriteComponent" inFileSize="(100.0, 90.0)" position="(12.0, 18.0)" size="(1.0, 0.8999999999999999)" topLeft="(0.0, 0.0)"/>
          </Component>
          <Component id="InputComponent">{}</Component>
       </Object>
