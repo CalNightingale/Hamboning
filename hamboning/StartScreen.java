@@ -1,19 +1,18 @@
 package hamboning;
 
 import engine.Application;
-import engine.GameObject;
 import engine.Screen;
 import engine.UILibrary.*;
 import engine.support.Vec2d;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
-public class PauseScreen extends Screen {
+public class StartScreen extends Screen {
     private boolean firstTick;
     private final HamboningScreen hs;
     private final Application app;
 
-    public PauseScreen(Application app, Vec2d screenSize, HamboningScreen hs) {
+    public StartScreen(Application app, Vec2d screenSize, HamboningScreen hs) {
         super(app, screenSize);
         firstTick = true;
         this.hs = hs;
@@ -34,7 +33,7 @@ public class PauseScreen extends Screen {
                 HamboningConstants.TITLE_FONT_PATH, Color.WHITE, getScreenSize());
         addElements(title);
         // sound
-        UISound sound = new UISound(getScreenSize().smult(0.5), getScreenSize(),
+        IntroSound sound = new IntroSound(getScreenSize().smult(0.5), getScreenSize(),
                 HamboningConstants.TITLE_MUSIC_PATH);
         addElements(sound);
     }

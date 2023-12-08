@@ -12,7 +12,7 @@ import javax.sound.sampled.Clip;
 
 public class UISound extends UIElement {
     private final String soundPath;
-    private Clip clip;
+    protected Clip clip;
     private boolean loaded;
 
     public UISound(Vec2d position, Vec2d screenSize, String path) {
