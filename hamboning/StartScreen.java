@@ -5,6 +5,8 @@ import engine.Screen;
 import engine.UILibrary.*;
 import engine.support.Vec2d;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 
 public class StartScreen extends Screen {
@@ -141,5 +143,17 @@ public class StartScreen extends Screen {
         quitButton.setClickAction(this.app::quit);
         addElements(buttonContainer);
         buttonContainer.setVisible(false);
+    }
+
+    @Override
+    public void onKeyPressed(KeyEvent e) {
+        // if escape is pressed and the intro is playing, cut to end
+        if (e.getCode() == KeyCode.ESCAPE &&
+            introSound.clip.isRunning()) {
+            introSound.clip.stop();
+            createdByText.setVisible(false);
+            title.setVisible(true);
+            buttonContainer.setVisible(true);
+        }
     }
 }

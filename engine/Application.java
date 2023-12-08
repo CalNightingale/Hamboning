@@ -17,7 +17,7 @@ import javafx.scene.input.ScrollEvent;
  */
 public class Application extends FXFrontEnd {
   private List<Screen> screenList = new ArrayList<>();
-  private Screen activeScreen;
+  protected Screen activeScreen;
   private boolean drawInactiveScreens = false;
 
   public Application(String title) {
