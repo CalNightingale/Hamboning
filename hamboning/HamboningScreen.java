@@ -13,6 +13,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.paint.Color;
 
 
@@ -22,6 +26,8 @@ public class HamboningScreen extends Screen {
     private Viewport vp;
     private SaveLoad sl;
     private boolean firstTick = true;
+    private Screen menuScreen;
+
     public HamboningScreen(Application app, Vec2d screenSize){
         super(app, screenSize);
 
@@ -56,6 +62,10 @@ public class HamboningScreen extends Screen {
         saveButton.setClickAction(() -> {
             this.save(saveButton);
         });
+    }
+
+    public void setMenuScreen(Screen menuScreen) {
+        this.menuScreen = menuScreen;
     }
 
     public void save(UIButton saveButton) {
@@ -95,22 +105,21 @@ public class HamboningScreen extends Screen {
     @Override
     public void onTick(long nanos){
         super.onTick(nanos);
-
         if (this.firstTick){
             this.firstTick = false;
-
             try {
                 sl.saveGameState(HamboningConstants.SAVE_PATH, gw);
-
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
-
         }
-
-
     }
 
-
+    @Override
+    public void onKeyPressed(KeyEvent e) {
+        if (e.getCode() == KeyCode.ESCAPE) {
+            this.app.setActiveScreen(this.menuScreen);
+        }
+        super.onKeyPressed(e);
+    }
 }

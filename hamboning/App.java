@@ -10,6 +10,7 @@ public class App extends Application {
         super(title);
         this.hs = new HamboningScreen(this, this.currentStageSize);
         this.ps = new StartScreen(this, this.currentStageSize, this.hs);
+        this.hs.setMenuScreen(this.ps);
         addScreen(this.hs);
         addScreen(this.ps);
         setActiveScreen(this.ps);

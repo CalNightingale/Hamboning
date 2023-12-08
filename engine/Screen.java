@@ -21,17 +21,13 @@ public class Screen {
   private List<UIElement> containedEls = new ArrayList<>();
   private Vec2d screenSize;
   private double aspect;
+  protected final Application app;
 
   //size variable
   public Screen(Application app, Vec2d screenSize){
     this.screenSize = screenSize;
     this.aspect = screenSize.x / screenSize.y;
-    //app.addScreen(this);
-
-
-
-    //gets size in the constructor
-
+    this.app = app;
   }
 
   public void setScreenSize(Vec2d ss){
