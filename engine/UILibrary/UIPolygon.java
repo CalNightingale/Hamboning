@@ -85,6 +85,8 @@ Vec2d[] points;
 
   @Override
   public void onDraw(GraphicsContext g){
+    super.onDraw(g);
+    if (!this.visible) return;
     double[] xPoints = new double[points.length];
     double[] yPoints = new double[points.length];
 

@@ -3,6 +3,7 @@ package engine.UILibrary;
 import engine.support.FontMetrics;
 import engine.support.Vec2d;
 import javafx.scene.Cursor;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -60,9 +61,4 @@ public class UIButton extends UIElement{
   public void setClickAction(Clickable action) {
     this.clickAction = action;
   }
-
-
-
-
-
 }

@@ -11,12 +11,18 @@ public class StartScreen extends Screen {
     private boolean firstTick;
     private final HamboningScreen hs;
     private final Application app;
+    private IntroSound introSound;
+    private int curBeatDrop;
+    private UIText title;
+    private UIText createdByText;
+    private UIElement buttonContainer;
 
     public StartScreen(Application app, Vec2d screenSize, HamboningScreen hs) {
         super(app, screenSize);
         firstTick = true;
         this.hs = hs;
         this.app = app;
+        curBeatDrop = 0;
     }
 
     private void initializeScreen() {
@@ -29,13 +35,21 @@ public class StartScreen extends Screen {
         makeButtons(this.getScreenSize());
         // text
         Vec2d titleLoc = new Vec2d(this.getScreenSize().x/2, 75);
-        UIText title = new UIText(titleLoc, new Vec2d(100), "Hamboning: The Game",
+        title = new UIText(titleLoc, new Vec2d(100), "Hamboning: The Game",
                 HamboningConstants.TITLE_FONT_PATH, Color.WHITE, getScreenSize());
         addElements(title);
+        title.setVisible(false);
+
+        createdByText = new UIText(getScreenSize().smult(0.5), new Vec2d(40),
+                "Created by Cal Nightingale and Elliott Rosenberg", HamboningConstants.BUTTON_FONT_PATH,
+                Color.WHITE, getScreenSize());
+        addElements(createdByText);
+        createdByText.setVisible(false);
+
         // sound
-        IntroSound sound = new IntroSound(getScreenSize().smult(0.5), getScreenSize(),
+        this.introSound = new IntroSound(getScreenSize().smult(0.5), getScreenSize(),
                 HamboningConstants.TITLE_MUSIC_PATH);
-        addElements(sound);
+        addElements(introSound);
     }
 
     @Override
@@ -45,10 +59,41 @@ public class StartScreen extends Screen {
             initializeScreen();
             firstTick = false;
         }
+        if (!(this.introSound.clip == null) && this.introSound.detectBeatDrop()) {
+            curBeatDrop++;
+            updateDisplayOnBeatDrop();
+        }
+    }
 
+    private void updateDisplayOnBeatDrop() {
+        switch (curBeatDrop) {
+            case 1:
+                title.setVisible(true);
+                break;
+            case 2:
+                title.setVisible(false);
+                createdByText.setVisible(true);
+                break;
+            case 3:
+                createdByText.setText("Based with love off The Regular Show");
+                break;
+            case 4:
+                createdByText.setText("Final Project; 2D Game Engines; Brown University");
+                break;
+            case 5:
+                createdByText.setText("Produced by Jacques Nissen");
+                break;
+            case 6:
+                createdByText.setVisible(false);
+                title.setVisible(true);
+                buttonContainer.setVisible(true);
+                break;
+        }
     }
 
     private void makeButtons(Vec2d screenSize) {
+        buttonContainer = new UIElement(new Vec2d(0), getScreenSize(), getScreenSize());
+
         double buttonWidth = screenSize.x * HamboningConstants.SCREEN_TO_BUTTON_WIDTH_RATIO;
         double buttonTopBound = screenSize.y * HamboningConstants.BUTTON_TOPBOUND_SCREENHEIGHT_RATIO;
         double buttonOffset = screenSize.y * HamboningConstants.BUTTON_SPACING_SCREENHEIGHT_RATIO;
@@ -62,7 +107,7 @@ public class StartScreen extends Screen {
                 HamboningConstants.BUTTON_COLOR, screenSize, HamboningConstants.BUTTON_FONT_PATH,
                 HamboningConstants.BUTTON_FONT_SIZE, HamboningConstants.BUTTON_TEXT_COLOR,
                 "NEW GAME", new Vec2d(0));
-        addElements(newGameButton);
+        buttonContainer.addChild(newGameButton);
         newGameButton.setClickAction(() -> this.app.setActiveScreen(this.hs));
         // save
         double saveY = buttonTopBound + buttonHeight + buttonOffset;
@@ -70,7 +115,7 @@ public class StartScreen extends Screen {
                 HamboningConstants.BUTTON_COLOR, screenSize, HamboningConstants.BUTTON_FONT_PATH,
                 HamboningConstants.BUTTON_FONT_SIZE, HamboningConstants.BUTTON_TEXT_COLOR,
                 "SAVE", new Vec2d(0));
-        addElements(saveButton);
+        buttonContainer.addChild(saveButton);
         saveButton.setClickAction(() -> {
             this.hs.save(saveButton);
             this.app.setActiveScreen(this.hs);
@@ -81,7 +126,7 @@ public class StartScreen extends Screen {
                 HamboningConstants.BUTTON_COLOR, screenSize, HamboningConstants.BUTTON_FONT_PATH,
                 HamboningConstants.BUTTON_FONT_SIZE, HamboningConstants.BUTTON_TEXT_COLOR,
                 "LOAD", new Vec2d(0));
-        addElements(loadButton);
+        buttonContainer.addChild(loadButton);
         loadButton.setClickAction(() -> {
             this.hs.load(loadButton);
             this.app.setActiveScreen(this.hs);
@@ -92,8 +137,9 @@ public class StartScreen extends Screen {
                 HamboningConstants.BUTTON_COLOR, screenSize, HamboningConstants.BUTTON_FONT_PATH,
                 HamboningConstants.BUTTON_FONT_SIZE, HamboningConstants.BUTTON_TEXT_COLOR,
                 "QUIT", new Vec2d(0));
-        addElements(quitButton);
+        buttonContainer.addChild(quitButton);
         quitButton.setClickAction(this.app::quit);
+        addElements(buttonContainer);
+        buttonContainer.setVisible(false);
     }
-
 }

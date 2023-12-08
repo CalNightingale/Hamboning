@@ -50,15 +50,12 @@ public class UIText extends UIElement {
   }
   @Override
   public void onDraw(GraphicsContext g){
+    super.onDraw(g);
+    if (!this.visible) return;
     Vec2d textPos = this.getTextPosition();
-
-
-
     g.setFill(color);
     g.setFont(this.font); // Adjust font size as needed
     g.fillText(this.text, textPos.x, textPos.y);
-
-
   }
 
   public void setFont(String font) {

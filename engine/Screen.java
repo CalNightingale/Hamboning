@@ -87,8 +87,6 @@ public class Screen {
     for(UIElement el:containedEls){
       el.onDraw(g);
     }
-
-
   }
 
   public void onMouseMoved(MouseEvent e){

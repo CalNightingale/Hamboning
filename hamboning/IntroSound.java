@@ -16,7 +16,8 @@ public class IntroSound extends UISound {
         lastDrop = -1;
     }
 
-    private boolean detectBeatDrop(double curPos) {
+    public boolean detectBeatDrop() {
+        double curPos = this.clip.getMicrosecondPosition() / 1e6;
         for (double dropTime : beatDrops) {
             if (curPos - lastDrop > minTimeBetweenDrops &&
                     Math.abs(curPos - dropTime) < dropThreshold) {
@@ -26,12 +27,4 @@ public class IntroSound extends UISound {
         }
         return false;
     }
-
-    @Override
-    public void onTick(long nanos) {
-        super.onTick(nanos);
-        double curPos = this.clip.getMicrosecondPosition() / 1e6;
-        if (detectBeatDrop(curPos)) System.out.println("BEAT DROP");
-    }
-
 }
