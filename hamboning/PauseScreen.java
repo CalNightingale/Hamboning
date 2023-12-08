@@ -1,10 +1,9 @@
 package hamboning;
 
 import engine.Application;
+import engine.GameObject;
 import engine.Screen;
-import engine.UILibrary.UIButton;
-import engine.UILibrary.UIImage;
-import engine.UILibrary.UIText;
+import engine.UILibrary.*;
 import engine.support.Vec2d;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
@@ -34,14 +33,20 @@ public class PauseScreen extends Screen {
         UIText title = new UIText(titleLoc, new Vec2d(100), "Hamboning: The Game",
                 HamboningConstants.TITLE_FONT_PATH, Color.WHITE, getScreenSize());
         addElements(title);
+        // sound
+        UISound sound = new UISound(getScreenSize().smult(0.5), getScreenSize(),
+                HamboningConstants.TITLE_MUSIC_PATH);
+        addElements(sound);
     }
 
     @Override
     public void onTick(long nanos) {
+        super.onTick(nanos);
         if (this.firstTick) {
             initializeScreen();
             firstTick = false;
         }
+
     }
 
     private void makeButtons(Vec2d screenSize) {
@@ -91,4 +96,5 @@ public class PauseScreen extends Screen {
         addElements(quitButton);
         quitButton.setClickAction(this.app::quit);
     }
+
 }
