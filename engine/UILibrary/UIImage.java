@@ -15,6 +15,8 @@ public class UIImage extends UIElement{
 
   @Override
   public void onDraw(GraphicsContext g){
+    super.onDraw(g);
+    if (!this.visible) return;
     g.drawImage(image, getPosition().x, getPosition().y, getSize().x, getSize().y);
   }
 

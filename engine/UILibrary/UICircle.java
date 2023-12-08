@@ -37,6 +37,7 @@ public class UICircle extends UIElement{
   @Override
   public void onDraw(GraphicsContext g){
     super.onDraw(g);
+    if (!this.visible) return;
     g.setFill(getColor());
 
     if (!justStroke) {

@@ -17,12 +17,11 @@ import javafx.scene.input.ScrollEvent;
  */
 public class Application extends FXFrontEnd {
   private List<Screen> screenList = new ArrayList<>();
-  private Screen activeScreen;
+  protected Screen activeScreen;
+  private boolean drawInactiveScreens = false;
 
   public Application(String title) {
     super(title);
-
-
   }
   public Application(String title, Vec2d windowSize, boolean debugMode, boolean fullscreen) {
     super(title, windowSize, debugMode, fullscreen);
@@ -34,10 +33,11 @@ public class Application extends FXFrontEnd {
    */
   @Override
   protected void onTick(long nanosSincePreviousTick) {
-    for (Screen sc: screenList){
-      sc.onTick(nanosSincePreviousTick);
-    }
+    activeScreen.onTick(nanosSincePreviousTick);
+  }
 
+  public void setDrawInactiveScreens(boolean drawInactiveScreens) {
+    this.drawInactiveScreens = drawInactiveScreens;
   }
 
   public void addScreen(Screen s){
@@ -48,7 +48,6 @@ public class Application extends FXFrontEnd {
 
   public void setActiveScreen(Screen s){
     activeScreen = s;
-
   }
 
   /**
@@ -65,16 +64,14 @@ public class Application extends FXFrontEnd {
    */
   @Override
   protected void onDraw(GraphicsContext g) {
-    for (Screen screen: screenList){
-      if (screen != activeScreen){
-        screen.onDraw(g);
+    if (drawInactiveScreens) {
+      for (Screen screen: screenList){
+        if (screen != activeScreen){
+          screen.onDraw(g);
+        }
       }
     }
-
     activeScreen.onDraw(g);
-
-
-
   }
 
   /**
@@ -93,14 +90,13 @@ public class Application extends FXFrontEnd {
   @Override
   protected void onKeyPressed(KeyEvent e) {
     if (e.getCode() == KeyCode.ESCAPE){
-      System.exit(0);
-
+      this.quit();
     }
+    activeScreen.onKeyPressed(e);
+  }
 
-    for (Screen s: screenList){
-      s.onKeyPressed(e);
-    }
-
+  public void quit() {
+    System.exit(0);
   }
 
 
@@ -110,10 +106,7 @@ public class Application extends FXFrontEnd {
    */
   @Override
   protected void onMouseWheelMoved(ScrollEvent e) {
-    for (Screen s: screenList){
-      s.onMouseWheelMoved(e);
-    }
-
+    activeScreen.onMouseWheelMoved(e);
   }
 
   /**
@@ -122,10 +115,7 @@ public class Application extends FXFrontEnd {
    */
   @Override
   protected void onKeyReleased(KeyEvent e) {
-    for (Screen s: screenList){
-      s.onKeyReleased(e);
-    }
-
+    activeScreen.onKeyReleased(e);
   }
 
   /**
@@ -135,7 +125,6 @@ public class Application extends FXFrontEnd {
   @Override
   protected void onMouseClicked(MouseEvent e) {
     activeScreen.onMouseClicked(e);
-
   }
 
   /**
@@ -144,10 +133,7 @@ public class Application extends FXFrontEnd {
    */
   @Override
   protected void onMousePressed(MouseEvent e) {
-    for (Screen s: screenList){
-      s.onMousePressed(e);
-    }
-
+    activeScreen.onMousePressed(e);
   }
 
   /**
@@ -156,9 +142,7 @@ public class Application extends FXFrontEnd {
    */
   @Override
   protected void onMouseReleased(MouseEvent e) {
-    for (Screen s: screenList){
-      s.onMouseReleased(e);
-    }
+    activeScreen.onMouseReleased(e);
   }
 
   /**
@@ -167,10 +151,7 @@ public class Application extends FXFrontEnd {
    */
   @Override
   protected void onMouseDragged(MouseEvent e) {
-    for (Screen s: screenList){
-      s.onMouseDragged(e);
-    }
-
+    activeScreen.onMouseDragged(e);
   }
 
   /**
@@ -179,9 +160,7 @@ public class Application extends FXFrontEnd {
    */
   @Override
   protected void onMouseMoved(MouseEvent e) {
-    //System.out.println("reachedApp");
     activeScreen.onMouseMoved(e);
-
   }
 
 

@@ -67,6 +67,8 @@ public class UIRectangle extends UIElement{
 
   @Override
   public void onDraw(GraphicsContext g){
+    super.onDraw(g);
+    if (!this.visible) return;
     if (pureStroke){
       g.save();
       g.setStroke(this.strColor); //there is currently a problem with my rounding

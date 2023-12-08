@@ -36,8 +36,7 @@ public class SpriteComponent extends UIElement implements Component<SpriteCompon
 
   @Override
   public Element serialize(Element el) {
-
-    System.out.println("serializing");
+    //System.out.println("serializing");
     el.setAttribute("id", "SpriteComponent");
     el.setAttribute("topLeft", getPosition().toString());
     el.setAttribute("inFileSize", getSize().toString());
@@ -45,7 +44,7 @@ public class SpriteComponent extends UIElement implements Component<SpriteCompon
     el.setAttribute("size", tc.getSize().toString());
     el.setAttribute("abs", Boolean.toString(absoluteSize));
 
-    System.out.println(el);
+    //System.out.println(el);
     return el;
   }
 

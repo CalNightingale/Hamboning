@@ -19,12 +19,14 @@ public class UIElement {
   public Color color;
   private List<UIElement> children = new ArrayList<>();
   private Vec2d windowSize;
+  boolean visible;
 
   public UIElement(Vec2d position, Vec2d size, Color color, Vec2d screenSize) {
     this.position = position;
     this.size = size;
     this.color = color;
     this.windowSize = screenSize;
+    this.visible = true;
   }
 
   public UIElement(Vec2d position, Vec2d size, Vec2d screenSize){
@@ -32,6 +34,7 @@ public class UIElement {
     this.size = size;
     this.color = Color.BLACK;
     this.windowSize = screenSize;
+    this.visible = true;
   }
 
   public UIElement(Element el, Vec2d screenSize){
@@ -39,7 +42,7 @@ public class UIElement {
     this.size = new Vec2d(el.getAttribute("size"));
     this.color = Color.web(el.getAttribute("color"));
     this.windowSize = screenSize;
-
+    this.visible = Boolean.parseBoolean(el.getAttribute("visible"));
   }
 
   public void addChild(UIElement el){
@@ -60,17 +63,15 @@ public class UIElement {
     el.setAttribute("position", this.position.toString());
     el.setAttribute("size", this.size.toString());
     el.setAttribute("color", this.color.toString());
-
+    el.setAttribute("visible", Boolean.toString(this.visible));
     return el;
   }
-
-
-
 
 
   public void setPosition(Vec2d position) {
     this.position = position;
   }
+  public void setVisible(boolean visible) { this.visible = visible; }
 
   public Vec2d getPosition(){
     return this.position;
@@ -105,6 +106,7 @@ public class UIElement {
   }
 
   public void onDraw(GraphicsContext g) {
+    if (!visible) return;
     for (UIElement child: this.children){
       child.onDraw(g);
     }
