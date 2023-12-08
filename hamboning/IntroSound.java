@@ -7,8 +7,7 @@ import java.util.Arrays;
 
 public class IntroSound extends UISound {
     private final double[] beatDrops;
-    private final double dropThreshold = 0.03;
-    private final double minTimeBetweenDrops = 0.2;
+    private final double minTimeBetweenDrops = 0.5;
     private double lastDrop;
     public IntroSound(Vec2d position, Vec2d screenSize, String path) {
         super(position, screenSize, path);
@@ -20,7 +19,8 @@ public class IntroSound extends UISound {
         double curPos = this.clip.getMicrosecondPosition() / 1e6;
         for (double dropTime : beatDrops) {
             if (curPos - lastDrop > minTimeBetweenDrops &&
-                    Math.abs(curPos - dropTime) < dropThreshold) {
+                    curPos - dropTime > 0
+                    && curPos - dropTime < minTimeBetweenDrops) {
                 lastDrop = curPos;
                 return true;
             }
