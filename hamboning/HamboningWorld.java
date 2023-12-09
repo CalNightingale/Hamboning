@@ -70,7 +70,7 @@ public class HamboningWorld extends GameWorld {
         g.addObjectToLayer(rigby, 1);
 
         // move
-        RigbyMoveComponent rigbyMC = new RigbyMoveComponent(rigby, HamboningConstants.MORD_SPEED, mordecai);
+        RigbyMoveComponent rigbyMC = new RigbyMoveComponent(rigby, HamboningConstants.MORD_SPEED*200, mordecai);
         rigby.addComponent(rigbyMC);
         t.addObject(rigby);
 

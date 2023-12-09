@@ -33,23 +33,36 @@ public class RigbyMoveComponent extends MoveableComponent {
         }
 
         // Check if Rigby needs to start moving
-        if (pathToFollow.size() > tickDelay) {
+        double DIST_THRESHOLD = 0.5;
+        if (pathToFollow.size() > 0 && pathToFollow.getLast().dist(this.tc.getPosition()) > DIST_THRESHOLD) {
             // Get the next position for Rigby to move towards
-            Vec2d nextPosition = pathToFollow.poll();
-
+            Vec2d nextPosition = pathToFollow.getFirst();
             // Move Rigby towards the next position in the path
-            moveRigbyTowards(nextPosition, nanos);
+            if (moveRigbyTowards(nextPosition, nanos)) {
+                // remove this path position if we reached it
+                pathToFollow.poll();
+            }
         }
     }
 
-    private void moveRigbyTowards(Vec2d targetPosition, long nanosSincePreviousTick) {
+    private boolean moveRigbyTowards(Vec2d targetPosition, long nanosSincePreviousTick) {
         Vec2d rigbyPosition = this.tc.getPosition();
 
         double dist = rigbyPosition.dist(targetPosition);
         if (dist > 0) {
             Vec2d moveDir = targetPosition.minus(rigbyPosition).normalize();
             double moveAmt = moveSpeed * nanosSincePreviousTick / 1e9;
-            this.tc.setPos(this.tc.getPosition().plus(moveDir.smult(moveAmt)));
+            Vec2d translationV = moveDir.smult(moveAmt);
+            Vec2d teleportV = targetPosition.minus(rigbyPosition);
+            // we can move to exactly where we want to go
+            if (teleportV.mag() < translationV.mag()) {
+                this.tc.setPos(targetPosition);
+                return true;
+            } else {
+                this.tc.setPos(this.tc.getPosition().plus(translationV));
+            }
+            return false;
         }
+        return true;
     }
 }
