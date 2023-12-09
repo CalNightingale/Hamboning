@@ -13,10 +13,7 @@ import engine.UILibrary.UIElement;
 import engine.UILibrary.UIPolygon;
 import engine.UILibrary.UIRectangle;
 import engine.support.Vec2d;
-import hamboning.Components.CartMoveableComponent;
-import hamboning.Components.CharacterInputComponent;
-import hamboning.Components.MordecaiAnimationComponent;
-import hamboning.Components.TileCollisionComponent;
+import hamboning.Components.*;
 import javafx.scene.paint.Color;
 
 public class HamboningWorld extends GameWorld {
@@ -26,6 +23,7 @@ public class HamboningWorld extends GameWorld {
     private SpriteSystem s;
     private InputSystem i;
     private CollisionSystem c;
+    private TimerSystem t;
     private SoundSystem soundSystem;
     private boolean firstTick = true;
     private HamboningMapLoader mapLoader;
@@ -72,8 +70,9 @@ public class HamboningWorld extends GameWorld {
         g.addObjectToLayer(rigby, 1);
 
         // move
-        MoveableComponent rigbyMC = new MoveableComponent(rigby, HamboningConstants.MORD_SPEED);
+        RigbyMoveComponent rigbyMC = new RigbyMoveComponent(rigby, HamboningConstants.MORD_SPEED, mordecai);
         rigby.addComponent(rigbyMC);
+        t.addObject(rigby);
 
         cart = makeCart();
     }
@@ -169,6 +168,8 @@ public class HamboningWorld extends GameWorld {
         addSystem(soundSystem);
         this.d = new DecaySystem();
         addSystem(d);
+        this.t = new TimerSystem();
+        addSystem(t);
     }
 
 }

@@ -41,7 +41,7 @@ public class MordecaiAnimationComponent extends AnimationComponent {
 
   @Override
   public void onTick(long nanos){
-    System.out.println(currDir + "DIR");
+    //System.out.println(currDir + "DIR");
     if (currDir == MovementDir.NONE){
       originalPos = new Vec2d(0,960);
       this.FRAME_DURATION = (long) Math.round(0.2 * 1000000000);
