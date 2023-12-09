@@ -135,6 +135,9 @@ public class HamboningWorld extends GameWorld {
         // Determine whether character is close enough to enter cart
         double dist = mordecai.tc.getCenter().dist(cart.tc.getCenter());
         if (dist > HamboningConstants.ENTER_CART_MAX_DIST) return;
+        // stop mordecai movement
+        MoveableComponent mc = mordecai.getComponent(CompEnum.Moveable);
+        mc.setStop();
         // deregister mordecai from input listening
         i.removeObject(mordecai);
         // move mordecai into center of cart
