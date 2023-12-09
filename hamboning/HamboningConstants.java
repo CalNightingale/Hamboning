@@ -7,8 +7,6 @@ public class HamboningConstants {
     public static final Vec2d GW_SIZE = new Vec2d(4,4);
     public static final Vec2d MAP_SIZE = new Vec2d(20);
     public static final double TILE_AMT = 64;
-    public static final Vec2d MORD_POS = new Vec2d(10,18);
-    public static final Vec2d MORD_SIZE = new Vec2d(0.6,0.6);
     public static final String SAVE_PATH = "hamboning/saves/save.xml";
     public static final String SFX_PATH_HAMBONING = "hamboning/assets/hamboning.wav";
     public static final Vec2d CART_POS = new Vec2d(12,18);
@@ -28,4 +26,9 @@ public class HamboningConstants {
     public static final String BUTTON_FONT_PATH = "hamboning/assets/IceCreamParty.ttf";
     public static final int BUTTON_FONT_SIZE = 50;
     public static final String TITLE_MUSIC_PATH = "hamboning/assets/introMusic.wav";
+
+    // MORDECAI AND RIGBY
+    public static final Vec2d MORD_POS = new Vec2d(10,18);
+    public static final Vec2d MORD_SIZE = new Vec2d(0.6,0.6);
+    public static final double MORD_SPEED = 0.5;
 }
