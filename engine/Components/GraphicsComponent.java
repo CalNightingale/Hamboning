@@ -45,11 +45,9 @@ public class GraphicsComponent implements Component<GraphicsComponent>{
       switch(shapeType){
         case "Rectangle":
           this.element = new UIRectangle(shapeEl, screenSize);
-
           break;
         case "Circle":
           this.element = new UICircle(shapeEl, screenSize);
-
           break;
         case "Polygon":
           this.element = new UIPolygon(shapeEl, screenSize);
@@ -62,15 +60,12 @@ public class GraphicsComponent implements Component<GraphicsComponent>{
           break;
       }
     }
-
-
   }
 
   public GraphicsComponent(TransformComponent tc, Vec2d ss, UIElement element){
     this.tc = tc;
     this.ss = ss;
     this.element = element;
-
   }
 
   @Override
