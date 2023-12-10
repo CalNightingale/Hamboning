@@ -98,6 +98,10 @@ public class GraphicsComponent implements Component<GraphicsComponent>{
 
   @Override
   public void onTick(long nanos) {
+    if (this.element != null) {
+      this.element.onTick(nanos);
+    }
+
 
   }
 

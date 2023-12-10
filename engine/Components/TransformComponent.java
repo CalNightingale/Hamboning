@@ -28,10 +28,10 @@ public class TransformComponent {
     if (cc != null){
       cc.getShape().setPosition(this);
     }
-    GraphicsComponent g = this.o.getComponent(CompEnum.Graphics);
-    if (g != null) {
-      g.setShapePos(pos);
-    }
+//    GraphicsComponent g = this.o.getComponent(CompEnum.Graphics);
+//    if (g != null) {
+//      g.setShapePos(pos);
+//    }
 
   }
 

@@ -29,6 +29,7 @@ public class HamboningConstants {
 
     // MORDECAI AND RIGBY
     public static final Vec2d MORD_POS = new Vec2d(10,18);
-    public static final Vec2d MORD_SIZE = new Vec2d(0.6,0.6);
+    public static final Vec2d MORD_SIZE = new Vec2d(.6,0.6);
+    public static final Vec2d RIG_SIZE = new Vec2d(0.55,0.55);
     public static final double MORD_SPEED = 0.5;
 }

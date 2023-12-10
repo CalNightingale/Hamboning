@@ -60,15 +60,21 @@ public class HamboningWorld extends GameWorld {
         mapLoader = new HamboningMapLoader(this.s, this.g, this.c, this.i, HamboningConstants.MAP_SIZE, this, 123456);
         mordecai = makeMordecai();
 
+
         // make rigby
-        rigby = new GameObject(mordecai.tc.getPosition().plus(0,1), HamboningConstants.MORD_SIZE, this);
+        rigby = new GameObject(mordecai.tc.getPosition().plus(0,1), HamboningConstants.RIG_SIZE, this);
 
         // graphics
-        UIElement rigbySprite = new UIRectangle(rigby.tc.getPosition(), rigby.tc.getSize(), Color.BROWN, getScreenSize());
+        RigbyAnimationComponent rigbySprite = new RigbyAnimationComponent(new Vec2d(0, 130), new Vec2d(64,64), Color.MAROON,
+            this.getScreenSize(), rigby.tc, true, 1, 3, 0.5);
+        rigby.addComponent(rigbySprite);
+        i.addObject(rigby);
+
+        //UIElement rigbySprite = new UIRectangle(rigby.tc.getPosition(), rigby.tc.getSize(), Color.BROWN, getScreenSize());
         GraphicsComponent rigbyGC = new GraphicsComponent(rigby.tc, new Vec2d(0), rigbySprite);
         rigby.addComponent(rigbyGC);
         g.addObjectToLayer(rigby, 1);
-
+        s.addAndLoad(rigby, "hamboning/assets/CharacterAssets/rigby.png");
         // move
         RigbyMoveComponent rigbyMC = new RigbyMoveComponent(rigby, HamboningConstants.MORD_SPEED*200, mordecai);
         rigby.addComponent(rigbyMC);
