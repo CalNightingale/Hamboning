@@ -37,7 +37,10 @@ public class SpriteSystem extends BaseSystem<SpriteSystem>{
       Element objEl = (Element) sprites.item(i);
       String objID = objEl.getAttribute("id");
       UUID uuid = UUID.fromString(objID);
-      GameObject obj = gameObjectMap.get(uuid);
+      GameObject obj = gameObjectMap.get(uuid); //here is where the problem is it could be null
+      if (obj == null){
+        System.out.println(uuid);
+      }
       String imPath = objEl.getTextContent();
 
       addAndLoad(obj, imPath);
@@ -114,7 +117,7 @@ public class SpriteSystem extends BaseSystem<SpriteSystem>{
 
     } catch (NullPointerException e){
       System.out.println(e.getMessage());
-      System.out.println("problem image" + o.getClass().getName() + " " + filePath);
+      System.out.println(o);
       }
 
     return spriteImage;
