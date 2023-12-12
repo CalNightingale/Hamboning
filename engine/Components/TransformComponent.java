@@ -14,8 +14,6 @@ public class TransformComponent {
     this.o = o;
   }
 
-
-
   public Vec2d getPosition(){return this.pos;}
 
   public Vec2d getSize(){return this.size;}

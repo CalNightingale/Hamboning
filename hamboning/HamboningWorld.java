@@ -59,14 +59,17 @@ public class HamboningWorld extends GameWorld {
 
         mapLoader = new HamboningMapLoader(this.s, this.g, this.c, this.i, HamboningConstants.MAP_SIZE, this, 123456);
         mordecai = makeMordecai();
+        rigby = makeRigby();
 
+        cart = makeCart();
+    }
 
-        // make rigby
+    private GameObject makeRigby() {
         rigby = new GameObject(mordecai.tc.getPosition().plus(0,1), HamboningConstants.RIG_SIZE, this);
 
         // graphics
         RigbyAnimationComponent rigbySprite = new RigbyAnimationComponent(new Vec2d(0, 130), new Vec2d(64,64), Color.MAROON,
-            this.getScreenSize(), rigby.tc, true, 1, 3, 0.5);
+                this.getScreenSize(), rigby.tc, true, 1, 3, 0.5);
         rigby.addComponent(rigbySprite);
         i.addObject(rigby);
 
@@ -80,7 +83,7 @@ public class HamboningWorld extends GameWorld {
         rigby.addComponent(rigbyMC);
         t.addObject(rigby);
 
-        cart = makeCart();
+        return rigby;
     }
 
     private GameObject makeMordecai() {
