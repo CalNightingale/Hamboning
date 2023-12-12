@@ -98,6 +98,7 @@ public class HamboningScreen extends Screen {
         removeEl(this.vp);
         // TODO THIS LIKELY WILL NOT WORK WITH THE SCORE
         this.gw = new HamboningWorld(HamboningConstants.GW_SIZE, this.getScreenSize(), scoreElement, false);
+        this.firstTick = false;
         this.vp = new Viewport(vpPos, vpSize, this.getScreenSize(), this.gw);
         gw.givePort(this.vp);
         sl.load(HamboningConstants.SAVE_PATH, this.gw);
