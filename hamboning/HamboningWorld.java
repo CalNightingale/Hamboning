@@ -31,12 +31,12 @@ public class HamboningWorld extends GameWorld {
     private GameObject mordecai;
     private GameObject rigby;
     private GameObject cart;
+    private final ScoreElement scoreElement;
 
 
-
-    public HamboningWorld(Vec2d gwSize, Vec2d screenSize, boolean firstTick){
+    public HamboningWorld(Vec2d gwSize, Vec2d screenSize, ScoreElement scoreElement, boolean firstTick){
         super(gwSize, screenSize, firstTick);
-
+        this.scoreElement = scoreElement;
         this.firstTick = firstTick;
         this.cr.registerComponentFactory("CartMoveableComponent", (data, gameObject, gameWorld) -> new CartMoveableComponent(data, gameObject, gameWorld));
         this.cr.registerComponentFactory("CharacterInputComponent", CharacterInputComponent::new);
@@ -45,18 +45,23 @@ public class HamboningWorld extends GameWorld {
         setupSystems();
     }
 
+    public void addToScore(int amt) {
+        this.scoreElement.addToScore(amt);
+    }
+
     @Override
     public void onTick(long nanos){
         if (firstTick){
             firstTick = false;
             setLevel();
+            // I have no idea why but the score starts at 4 and this is the only easy way to fix it
+            this.scoreElement.subtractFromScore(4);
         }
         super.onTick(nanos);
 
     }
 
     public void setLevel(){
-
         mapLoader = new HamboningMapLoader(this.s, this.g, this.c, this.i, HamboningConstants.MAP_SIZE, this, 123456);
         mordecai = makeMordecai();
         rigby = makeRigby();
