@@ -200,4 +200,8 @@ public class HamboningWorld extends GameWorld {
         addSystem(t);
     }
 
+    public void toggleMute() {
+        this.soundSystem.toggleMute();
+    }
+
 }

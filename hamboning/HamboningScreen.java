@@ -23,7 +23,7 @@ import javafx.scene.paint.Color;
 
 public class HamboningScreen extends Screen {
 
-    private GameWorld gw;
+    private HamboningWorld gw;
     private Viewport vp;
     private SaveLoad sl;
     private boolean firstTick = true;
@@ -129,6 +129,8 @@ public class HamboningScreen extends Screen {
     public void onKeyPressed(KeyEvent e) {
         if (e.getCode() == KeyCode.ESCAPE) {
             this.app.setActiveScreen(this.menuScreen);
+        } else if (e.getCode() == KeyCode.M) {
+            this.gw.toggleMute();
         }
         super.onKeyPressed(e);
     }
