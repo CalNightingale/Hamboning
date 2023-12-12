@@ -154,6 +154,8 @@ public class StartScreen extends Screen {
             createdByText.setVisible(false);
             title.setVisible(true);
             buttonContainer.setVisible(true);
+        } else if (e.getCode() == KeyCode.M) {
+            this.hs.onKeyPressed(e);
         }
     }
 }
