@@ -7,7 +7,7 @@ import engine.support.Vec2d;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
-public class MordecaiAnimationComponent extends AnimationComponent {
+public class RigbyAnimationComponent extends AnimationComponent {
   public int rowsRight;
   public int colsRight;
   public int rowsNone;
@@ -21,7 +21,7 @@ public class MordecaiAnimationComponent extends AnimationComponent {
   public int cols;
   public Vec2d originalPos;
 
-  public MordecaiAnimationComponent(Vec2d position, Vec2d size,
+  public RigbyAnimationComponent(Vec2d position, Vec2d size,
       Color color, Vec2d screenSize,
       TransformComponent tc, boolean absolute, int rows, int cols,
       double framedur) {
@@ -41,14 +41,13 @@ public class MordecaiAnimationComponent extends AnimationComponent {
 
   @Override
   public void onTick(long nanos){
-    //System.out.println(currDir + "DIR");
     if (currDir == MovementDir.NONE){
-      originalPos = new Vec2d(0,960);
+      originalPos = new Vec2d(0,512);
       this.FRAME_DURATION = (long) Math.round(0.2 * 1000000000);
 
 
     } else if (currDir == MovementDir.RIGHT ||currDir == MovementDir.LEFT || currDir == MovementDir.UP){
-      originalPos = new Vec2d(0,128);
+      originalPos = new Vec2d(0,64);
       this.FRAME_DURATION = (long) Math.round(0.4 * 1000000000);
 
     } else {

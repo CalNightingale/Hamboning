@@ -9,13 +9,11 @@ import engine.Shapes.Circle;
 import engine.Shapes.Polygon;
 import engine.Systems.*;
 import engine.UILibrary.UICircle;
+import engine.UILibrary.UIElement;
 import engine.UILibrary.UIPolygon;
 import engine.UILibrary.UIRectangle;
 import engine.support.Vec2d;
-import hamboning.Components.CartMoveableComponent;
-import hamboning.Components.CharacterInputComponent;
-import hamboning.Components.MordecaiAnimationComponent;
-import hamboning.Components.TileCollisionComponent;
+import hamboning.Components.*;
 import javafx.scene.paint.Color;
 
 public class HamboningWorld extends GameWorld {
@@ -25,11 +23,13 @@ public class HamboningWorld extends GameWorld {
     private SpriteSystem s;
     private InputSystem i;
     private CollisionSystem c;
+    private TimerSystem t;
     private SoundSystem soundSystem;
     private boolean firstTick = true;
     private HamboningMapLoader mapLoader;
 
     private GameObject mordecai;
+    private GameObject rigby;
     private GameObject cart;
 
 
@@ -58,34 +58,42 @@ public class HamboningWorld extends GameWorld {
     public void setLevel(){
 
         mapLoader = new HamboningMapLoader(this.s, this.g, this.c, this.i, HamboningConstants.MAP_SIZE, this, 123456);
+        mordecai = makeMordecai();
+        rigby = makeRigby();
 
-        //creating background
-//        GameObject ninBackground = new GameObject(new Vec2d(0), HamboningConstants.GW_SIZE, this);
-//
-//        UIRectangle backgroundElement = new UIRectangle(new Vec2d(0), HamboningConstants.GW_SIZE, HamboningConstants.NIN_BACKGROUND_COLOR, getScreenSize());
-//        GraphicsComponent backgroundGC = new GraphicsComponent(ninBackground.tc, getScreenSize(), backgroundElement);
-//        SoundComponent backgroundSC = new SoundComponent(HamboningConstants.SFX_PATH_HAMBONING);
-//        ninBackground.addComponent(backgroundGC);
-//        ninBackground.addComponent(backgroundSC);
-//        soundSystem.addObject(ninBackground);
-//        g.addObjectToLayer(ninBackground, 0);
-//        addObjects(ninBackground);
+        cart = makeCart();
+    }
 
+    private GameObject makeRigby() {
+        rigby = new GameObject(mordecai.tc.getPosition().plus(0,1), HamboningConstants.RIG_SIZE, this);
 
+        // graphics
+        RigbyAnimationComponent rigbySprite = new RigbyAnimationComponent(new Vec2d(0, 130), new Vec2d(64,64), Color.MAROON,
+                this.getScreenSize(), rigby.tc, true, 1, 3, 0.5);
+        rigby.addComponent(rigbySprite);
+        i.addObject(rigby);
+
+        //UIElement rigbySprite = new UIRectangle(rigby.tc.getPosition(), rigby.tc.getSize(), Color.BROWN, getScreenSize());
+        GraphicsComponent rigbyGC = new GraphicsComponent(rigby.tc, new Vec2d(0), rigbySprite);
+        rigby.addComponent(rigbyGC);
+        g.addObjectToLayer(rigby, 1);
+        s.addAndLoad(rigby, "hamboning/assets/CharacterAssets/rigby.png");
+        // move
+        RigbyMoveComponent rigbyMC = new RigbyMoveComponent(rigby, HamboningConstants.MORD_SPEED*200, mordecai);
+        rigby.addComponent(rigbyMC);
+        t.addObject(rigby);
+
+        return rigby;
+    }
+
+    private GameObject makeMordecai() {
         mordecai = new GameObject(HamboningConstants.MORD_POS, HamboningConstants.MORD_SIZE, this);
-//        SpriteComponent mordSprite = new SpriteComponent(new Vec2d(80, 80), new Vec2d(30, 50), Color.MAROON,
-//            this.getScreenSize(), mordecai.tc, false);
-//        mordecai.addComponent(mordSprite);
 
         MordecaiAnimationComponent mordSprite2 = new MordecaiAnimationComponent(new Vec2d(0,130), new Vec2d(64,64), Color.MAROON,
-            this.getScreenSize(), mordecai.tc, true, 1, 3, 0.5);
+                this.getScreenSize(), mordecai.tc, true, 1, 3, 0.5);
         mordecai.addComponent(mordSprite2);
 
-//        SoundComponent backgroundSC = new SoundComponent(HamboningConstants.SFX_PATH_HAMBONING);
-//        mordecai.addComponent(backgroundSC);
-//        soundSystem.addObject(mordecai);
-
-        MoveableComponent mc = new MoveableComponent(mordecai, 0.5);
+        MoveableComponent mc = new MoveableComponent(mordecai, HamboningConstants.MORD_SPEED);
         mordecai.addComponent(mc);
 
         CharacterInputComponent mordecaiIC = new CharacterInputComponent(mordecai, this, this::getInCart);
@@ -107,7 +115,7 @@ public class HamboningWorld extends GameWorld {
 
         this.addObjects(mordecai);
 
-        cart = makeCart();
+        return mordecai;
     }
 
     private GameObject makeCart() {
@@ -169,6 +177,8 @@ public class HamboningWorld extends GameWorld {
         addSystem(soundSystem);
         this.d = new DecaySystem();
         addSystem(d);
+        this.t = new TimerSystem();
+        addSystem(t);
     }
 
 }

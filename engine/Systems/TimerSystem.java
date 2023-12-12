@@ -1,16 +1,13 @@
 package engine.Systems;
 
 import engine.GameObject;
-import java.util.HashMap;
-import java.util.UUID;
 import javafx.scene.canvas.GraphicsContext;
 import org.w3c.dom.Element;
 
-public class TimerSystem extends BaseSystem {
+public class TimerSystem extends BaseSystem<TimerSystem> {
   public TimerSystem(){
     super();
     setTag(SystemEnum.Timer);
-
   }
 
   @Override
@@ -27,7 +24,9 @@ public class TimerSystem extends BaseSystem {
 
   @Override
   public void onTick(long nanos){
-
+    for (GameObject o: objList) {
+      o.onTick(nanos);
+    }
   }
 
 }

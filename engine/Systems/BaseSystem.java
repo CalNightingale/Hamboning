@@ -10,7 +10,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 public abstract class BaseSystem<T extends BaseSystem<T>> {
-  public List<GameObject> objList = new ArrayList<>();
+  public List<GameObject> objList = new ArrayList<GameObject>();
   private SystemEnum tag;
   public BaseSystem(){
 
