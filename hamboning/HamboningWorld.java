@@ -83,7 +83,7 @@ public class HamboningWorld extends GameWorld {
         g.addObjectToLayer(rigby, 1);
         s.addAndLoad(rigby, "hamboning/assets/CharacterAssets/rigby.png");
         // move
-        RigbyMoveComponent rigbyMC = new RigbyMoveComponent(rigby, HamboningConstants.MORD_SPEED*200, mordecai);
+        RigbyMoveComponent rigbyMC = new RigbyMoveComponent(rigby, HamboningConstants.MORD_SPEED*2, mordecai);
         rigby.addComponent(rigbyMC);
         t.addObject(rigby);
         // sound
