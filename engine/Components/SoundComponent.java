@@ -48,6 +48,11 @@ public class SoundComponent implements Component<SoundComponent>{
         play(false);
     }
 
+    @Override
+    public void onDraw(GraphicsContext g) {
+
+    }
+
     public void play(boolean truncate) {
         if (!loaded) {
             load();
@@ -60,9 +65,12 @@ public class SoundComponent implements Component<SoundComponent>{
         }
     }
 
-    @Override
-    public void onDraw(GraphicsContext g) {
-
+    public void toggle(boolean toggledOff) {
+        if (toggledOff) {
+            clip.stop();
+        } else {
+            clip.start();
+        }
     }
 
     @Override
