@@ -69,7 +69,7 @@ public class HamboningWorld extends GameWorld {
     }
 
     private GameObject makeRigby() {
-        rigby = new GameObject(mordecai.tc.getPosition().plus(0,1), HamboningConstants.RIG_SIZE, this);
+        rigby = new GameObject(mordecai.tc.getPosition().plus(1,0), HamboningConstants.RIG_SIZE, this);
 
         // graphics
         RigbyAnimationComponent rigbySprite = new RigbyAnimationComponent(new Vec2d(0, 130), new Vec2d(64,64), Color.MAROON,
