@@ -128,6 +128,12 @@ public class HamboningWorld extends GameWorld {
         cart.addComponent(cartGC);
         g.addObjectToLayer(cart, 1);
 
+        // Collisions
+        AAB cartAAB = new AAB(cart.tc.getPosition(), cart.tc.getSize(), false, "cart");
+        TileCollisionComponent cartColC = new TileCollisionComponent(cartAAB, cart);
+        cart.addComponent(cartColC);
+        c.addObjectToLayer(cart, 1);
+
         // Movement
         MoveableComponent cartMC = new CartMoveableComponent(cart, 1, mordecai, rigby);
         cart.addComponent(cartMC);
