@@ -68,8 +68,8 @@ public class CartMoveableComponent extends MoveableComponent {
     private void makeTracks() {
         // TODO rework once cart sprite implemented
         double bottomY = this.o.tc.getPosition().y + this.o.tc.getSize().y;
-        double x1 = this.o.tc.getPosition().x;
-        double x2 = this.o.tc.getPosition().x + this.o.tc.getSize().x - HamboningConstants.TRACK_SIZE.x;
+        double x1 = this.o.tc.getPosition().x + HamboningConstants.TRACK_OFFSET;
+        double x2 = this.o.tc.getPosition().x + this.o.tc.getSize().x - HamboningConstants.TRACK_SIZE.x - HamboningConstants.TRACK_OFFSET;
         Vec2d track1Pos = new Vec2d(x1, bottomY);
         Vec2d track2Pos = new Vec2d(x2, bottomY);
         spawnTrack(track1Pos);
