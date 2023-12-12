@@ -57,7 +57,7 @@ public class CartMoveableComponent extends MoveableComponent {
         GraphicsComponent trackGC = new GraphicsComponent(track.getTransform(), new Vec2d(0), trackElement);
         track.addComponent(trackGC);
         GraphicsSystem g = this.o.getGW().getSystem(SystemEnum.Graphics);
-        g.addObjectToLayer(track,1);
+        g.addObjectToLayer(track,0);
         // decay
         DecayComponent trackD = new DecayComponent(HamboningConstants.TRACK_DECAY_TIME, track, this.o.getGW());
         track.addComponent(trackD);
