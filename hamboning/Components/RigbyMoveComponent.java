@@ -45,6 +45,10 @@ public class RigbyMoveComponent extends MoveableComponent {
         }
     }
 
+    public void clearPath() {
+        this.pathToFollow.clear();
+    }
+
     private boolean moveRigbyTowards(Vec2d targetPosition, long nanosSincePreviousTick) {
         Vec2d rigbyPosition = this.tc.getPosition();
 
