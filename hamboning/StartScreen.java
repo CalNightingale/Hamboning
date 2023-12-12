@@ -99,7 +99,7 @@ public class StartScreen extends Screen {
         double buttonWidth = screenSize.x * HamboningConstants.SCREEN_TO_BUTTON_WIDTH_RATIO;
         double buttonTopBound = screenSize.y * HamboningConstants.BUTTON_TOPBOUND_SCREENHEIGHT_RATIO;
         double buttonOffset = screenSize.y * HamboningConstants.BUTTON_SPACING_SCREENHEIGHT_RATIO;
-        int numButtons = 4;
+        int numButtons = 2;
         double totalButtonHeight = screenSize.y - buttonTopBound - buttonOffset*(numButtons-1);
         double buttonHeight = totalButtonHeight / numButtons;
         Vec2d buttonSize = new Vec2d(buttonWidth, buttonHeight);
@@ -113,6 +113,7 @@ public class StartScreen extends Screen {
 
         newGameButton.setClickAction(() -> this.app.setActiveScreen(this.hs));
         // save
+        /*
         double saveY = buttonTopBound + buttonHeight + buttonOffset;
         UIButton saveButton = new UIButton(new Vec2d(buttonX, saveY), buttonSize,
                 HamboningConstants.BUTTON_COLOR, screenSize, HamboningConstants.BUTTON_FONT_PATH,
@@ -133,9 +134,10 @@ public class StartScreen extends Screen {
         loadButton.setClickAction(() -> {
             this.hs.load(loadButton);
             this.app.setActiveScreen(this.hs);
-        });
+        });*/
         // quit
-        double quitY = buttonTopBound + (buttonHeight + buttonOffset) * 3;
+        //double quitY = buttonTopBound + (buttonHeight + buttonOffset) * 3;
+        double quitY = buttonTopBound + (buttonHeight + buttonOffset) * 1;
         UIButton quitButton = new UIButton(new Vec2d(buttonX, quitY), buttonSize,
                 HamboningConstants.BUTTON_COLOR, screenSize, HamboningConstants.BUTTON_FONT_PATH,
                 HamboningConstants.BUTTON_FONT_SIZE, HamboningConstants.BUTTON_TEXT_COLOR,
