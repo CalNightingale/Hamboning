@@ -9,14 +9,14 @@ import org.w3c.dom.Element;
 
 
 public class MoveableComponent implements Component<MoveableComponent>{
-  private double moveSpeed;
+  protected double moveSpeed;
   private static HashMap<MovementDir, Vec2d> dirInfo;
-  private HashMap<MovementDir, Boolean> shouldMove;
+  protected HashMap<MovementDir, Boolean> shouldMove;
 
 
 
   protected GameObject o;
-  private TransformComponent tc;
+  protected TransformComponent tc;
 
   public MovementDir currDir = MovementDir.NONE;
   private long frameCount = 0;
@@ -147,8 +147,8 @@ public class MoveableComponent implements Component<MoveableComponent>{
 
 
     if (shouldMove.get(MovementDir.UP)) {
-      System.out.println("moving up");
       moveUp(moveAmount);
+
       currDir = MovementDir.UP;
     } else if (shouldMove.get(MovementDir.DOWN)) {
       moveDown(moveAmount);

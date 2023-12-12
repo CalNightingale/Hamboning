@@ -156,7 +156,7 @@ public class GameObject {
     }
 
     SpriteComponent sc = this.getComponent(CompEnum.Sprite);
-    if (cc != null){
+    if (sc != null){
       sc.onTick(nanos);
     }
 

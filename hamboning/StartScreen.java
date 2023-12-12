@@ -110,6 +110,7 @@ public class StartScreen extends Screen {
                 HamboningConstants.BUTTON_FONT_SIZE, HamboningConstants.BUTTON_TEXT_COLOR,
                 "NEW GAME", new Vec2d(0));
         buttonContainer.addChild(newGameButton);
+
         newGameButton.setClickAction(() -> this.app.setActiveScreen(this.hs));
         // save
         double saveY = buttonTopBound + buttonHeight + buttonOffset;
@@ -154,6 +155,9 @@ public class StartScreen extends Screen {
             createdByText.setVisible(false);
             title.setVisible(true);
             buttonContainer.setVisible(true);
+        } else if (e.getCode() == KeyCode.M) {
+            // pass muting command to hs so it can toggle the music
+            this.hs.onKeyPressed(e);
         }
     }
 }

@@ -7,8 +7,6 @@ public class HamboningConstants {
     public static final Vec2d GW_SIZE = new Vec2d(4,4);
     public static final Vec2d MAP_SIZE = new Vec2d(20);
     public static final double TILE_AMT = 64;
-    public static final Vec2d MORD_POS = new Vec2d(10,18);
-    public static final Vec2d MORD_SIZE = new Vec2d(0.6,0.6);
     public static final String SAVE_PATH = "hamboning/saves/save.xml";
     public static final String SFX_PATH_HAMBONING = "hamboning/assets/hamboning.wav";
     public static final Vec2d CART_POS = new Vec2d(12,18);
@@ -16,6 +14,7 @@ public class HamboningConstants {
     public static final double ENTER_CART_MAX_DIST = 0.75;
     public static final Vec2d TRACK_SIZE = new Vec2d(0.1,0.1);
     public static final double TRACK_DECAY_TIME = 0.5;
+    public static final double TRACK_OFFSET = 0.1;
 
     // MENU BUTTON STUFF
     public static final Color BUTTON_COLOR = Color.TRANSPARENT;
@@ -28,4 +27,13 @@ public class HamboningConstants {
     public static final String BUTTON_FONT_PATH = "hamboning/assets/IceCreamParty.ttf";
     public static final int BUTTON_FONT_SIZE = 50;
     public static final String TITLE_MUSIC_PATH = "hamboning/assets/introMusic.wav";
+    public static final String SUMMERTIME_LOVIN_PATH = "hamboning/assets/summertimeLovin.wav";
+
+    // MORDECAI AND RIGBY
+    public static final Vec2d MORD_POS = new Vec2d(10,18);
+    public static final Vec2d MORD_SIZE = new Vec2d(.6,0.6);
+    public static final Vec2d RIG_SIZE = new Vec2d(0.55,0.55);
+    public static final double MORD_SPEED = 0.5;
+    // SCORE
+    public static final int LEAF_SCORE_AMT = 1;
 }

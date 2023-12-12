@@ -7,6 +7,8 @@ import engine.GameObject;
 import engine.GameWorld;
 import engine.Shapes.Collision;
 import engine.Shapes.Shape;
+import hamboning.HamboningConstants;
+import hamboning.HamboningWorld;
 import org.w3c.dom.Element;
 
 public class TileCollisionComponent extends CollisionComponent {
@@ -17,7 +19,6 @@ public class TileCollisionComponent extends CollisionComponent {
 
   public TileCollisionComponent(Element data, GameObject o, GameWorld gameWorld){
     super(data, o.tc);
-
   }
 
   @Override
@@ -30,7 +31,14 @@ public class TileCollisionComponent extends CollisionComponent {
       this.o.tc.setPos(this.o.tc.getPosition().plus(coll.mtv.reflect()));
     }
     if (coll.thisShape.getTag() == "leaves"){ // can do this with everything
-      this.o.getGW().addToRemovals(coll.other);
+
+      if (coll.otherShape.getTag() == "mordecai") {
+        this.o.getGW().addToRemovals(coll.other);
+        HamboningWorld hw = (HamboningWorld) this.o.getGW();
+        hw.addToScore(HamboningConstants.LEAF_SCORE_AMT);
+
+      }
+      // }
     }
     if (coll.thisShape.getTag() == "tables"){
       this.o.tc.setPos(this.o.tc.getPosition().plus(coll.mtv.sdiv(2).reflect()));

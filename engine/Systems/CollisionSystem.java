@@ -158,9 +158,8 @@ public class CollisionSystem extends BaseSystem<CollisionSystem>{
           if (collisionVec != null){
             if (collisionVec.mag() != 0){
 
-              Collision collision = new Collision(otherObject, collisionVec, ca.getShape(), cb.getShape());
+              Collision collision = new Collision(currObject, otherObject, collisionVec, ca.getShape(), cb.getShape());
               currObject.handleCollision(collision);
-              System.out.println("is colliding within the same layer!");
 
             }
             //System.out.println("is colliding within the same layer!");
@@ -183,7 +182,7 @@ public class CollisionSystem extends BaseSystem<CollisionSystem>{
           Vec2d collisionVec = baseComponent.isColliding(otherComponent);
           if (collisionVec != null) {
             if(collisionVec.mag() != 0){
-              Collision collision = new Collision(baseObject, collisionVec, baseComponent.getShape(), otherComponent.getShape());
+              Collision collision = new Collision(otherObject, baseObject, collisionVec, baseComponent.getShape(), otherComponent.getShape());
               otherObject.handleCollision(collision);
               //System.out.println("currObject" + baseObject.getClass().getName() + baseObject.getTransform().getPosition());
               //System.out.println("otherObject" + otherObject.getClass().getName() + otherObject.getTransform().getPosition());

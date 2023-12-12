@@ -43,39 +43,45 @@ public class AnimationComponent extends SpriteComponent{
   public void setOriginalPos(Vec2d originalPos){this.originalPos = originalPos;}
   @Override
   public void onTick(long nanos){
+    if (rowsRight == 1 && colsRight == 1){
 
-    timeElapsed += nanos;
-    if (timeElapsed >= FRAME_DURATION){
+    } else {
+      timeElapsed += nanos;
+      if (timeElapsed >= FRAME_DURATION){
 
-      if (currDir == MovementDir.NONE){
-        // Update current row and column
-        currCol = (currCol + 1) % this.colsNone;
+        if (currDir == MovementDir.NONE){
+          // Update current row and column
+          currCol = (currCol + 1) % this.colsNone;
 
-        if (currCol == 0) {
+          if (currCol == 0) {
+            currRow = (currRow + 1) % this.rowsRight;
+          }
+
+          // Calculate new xPos and yPos for the sprite based on the original starting position
+          double xPos = this.originalPos.x + currCol * getSize().x;
+          double yPos = this.originalPos.y + currRow * getSize().y;
+
+          // Set the new position for the sprite
+          setPosition(new Vec2d(xPos, yPos));
+
+        } else {
+          // Update current row and column
           currRow = (currRow + 1) % this.rowsRight;
-        }
 
-        // Calculate new xPos and yPos for the sprite based on the original starting position
-        double xPos = this.originalPos.x + currCol * getSize().x;
-        double yPos = this.originalPos.y + currRow * getSize().y;
+          if (currRow == 0) {
+            currCol = (currCol + 1) % this.colsRight;
+          }
 
-        // Set the new position for the sprite
-        setPosition(new Vec2d(xPos, yPos));
+          // Calculate new xPos and yPos for the sprite based on the original starting position
+          double xPos = this.originalPos.x;
+          double yPos = this.originalPos.y + currRow * getSize().y;
 
-      } else {
-        // Update current row and column
-        currRow = (currRow + 1) % this.rowsRight;
+          // Set the new position for the sprite
+          setPosition(new Vec2d(xPos, yPos));
 
-        if (currRow == 0) {
-          currCol = (currCol + 1) % this.colsRight;
-        }
+    }
 
-        // Calculate new xPos and yPos for the sprite based on the original starting position
-        double xPos = this.originalPos.x;
-        double yPos = this.originalPos.y + currRow * getSize().y;
 
-        // Set the new position for the sprite
-        setPosition(new Vec2d(xPos, yPos));
 
       }
 
@@ -97,14 +103,8 @@ public class AnimationComponent extends SpriteComponent{
 
   @Override
   public void onDraw(GraphicsContext g) {
-    if ((this.getCurrDir() == MovementDir.RIGHT)){
       g.drawImage(this.sprite, getPosition().x + getSize().x, getPosition().y, -getSize().x, getSize().y,
           tc.getPosition().x, tc.getPosition().y, tc.getSize().x, tc.getSize().y);
-
-    } else {
-      g.drawImage(this.sprite, getPosition().x, getPosition().y, getSize().x, getSize().y,
-          tc.getPosition().x, tc.getPosition().y, tc.getSize().x, tc.getSize().y);
-    }
 
   }
 
