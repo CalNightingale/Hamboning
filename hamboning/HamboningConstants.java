@@ -32,4 +32,6 @@ public class HamboningConstants {
     public static final Vec2d MORD_SIZE = new Vec2d(.6,0.6);
     public static final Vec2d RIG_SIZE = new Vec2d(0.55,0.55);
     public static final double MORD_SPEED = 0.5;
+    // SCORE
+    public static final int LEAF_SCORE_AMT = 2;
 }

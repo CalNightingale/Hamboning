@@ -7,6 +7,7 @@ import engine.GameWorld;
 import engine.SaveLoad;
 import engine.Screen;
 import engine.UILibrary.UIButton;
+import engine.UILibrary.UIText;
 import engine.Viewport;
 import engine.support.Vec2d;
 import java.nio.file.Files;
@@ -28,22 +29,29 @@ public class HamboningScreen extends Screen {
     private boolean firstTick = true;
     private Screen menuScreen;
 
+    private ScoreElement scoreElement;
+
+
     public HamboningScreen(Application app, Vec2d screenSize){
         super(app, screenSize);
 
         this.sl = new SaveLoad();
+        this.scoreElement = new ScoreElement(new Vec2d(75,25), new Vec2d(50), HamboningConstants.BUTTON_FONT_PATH, Color.BLACK, getScreenSize());
 
-
-        Vec2d vpSize = new Vec2d(screenSize.y, screenSize.y);
+        Vec2d vpSize = new Vec2d(screenSize.x, screenSize.y);
+        // if want skinny vp, make vpsize y,y not x,y
         Vec2d vpPos =  new Vec2d((screenSize.x/2) - (vpSize.x/2),0);
 
-        this.gw = new HamboningWorld(HamboningConstants.GW_SIZE, screenSize, true);
+        this.gw = new HamboningWorld(HamboningConstants.GW_SIZE, screenSize, scoreElement, true);
         this.vp = new Viewport(vpPos, vpSize, screenSize, gw);
 
         gw.givePort(this.vp); //would love to avoid this
         addElements(this.vp);
 
-        //Vec2d pos, Vec2d siz, Color butCol, Vec2d screenSize, Color textCol, String text, Vec2d rounding
+        // must be done after vp added to show up on top
+        addElements(scoreElement);
+
+        /*
         Vec2d savePos = new Vec2d(10);
         Vec2d saveSize = new Vec2d(60, 40);
 
@@ -61,7 +69,7 @@ public class HamboningScreen extends Screen {
 
         saveButton.setClickAction(() -> {
             this.save(saveButton);
-        });
+        });*/
     }
 
     public void setMenuScreen(Screen menuScreen) {
@@ -87,7 +95,8 @@ public class HamboningScreen extends Screen {
         Vec2d vpPos = this.vp.getPosition();
         Vec2d vpSize = this.vp.getSize();
         removeEl(this.vp);
-        this.gw = new HamboningWorld(HamboningConstants.GW_SIZE, this.getScreenSize(), false);
+        // TODO THIS LIKELY WILL NOT WORK WITH THE SCORE
+        this.gw = new HamboningWorld(HamboningConstants.GW_SIZE, this.getScreenSize(), scoreElement, false);
         this.vp = new Viewport(vpPos, vpSize, this.getScreenSize(), this.gw);
         gw.givePort(this.vp);
         sl.load(HamboningConstants.SAVE_PATH, this.gw);
