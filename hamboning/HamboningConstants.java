@@ -27,6 +27,7 @@ public class HamboningConstants {
     public static final String BUTTON_FONT_PATH = "hamboning/assets/IceCreamParty.ttf";
     public static final int BUTTON_FONT_SIZE = 50;
     public static final String TITLE_MUSIC_PATH = "hamboning/assets/introMusic.wav";
+    public static final String SUMMERTIME_LOVIN_PATH = "hamboning/assets/summertimeLovin.wav";
 
     // MORDECAI AND RIGBY
     public static final Vec2d MORD_POS = new Vec2d(10,18);
