@@ -60,7 +60,6 @@ public class HamboningWorld extends GameWorld {
         mapLoader = new HamboningMapLoader(this.s, this.g, this.c, this.i, HamboningConstants.MAP_SIZE, this, 123456);
         mordecai = makeMordecai();
         rigby = makeRigby();
-
         cart = makeCart();
     }
 
@@ -130,7 +129,7 @@ public class HamboningWorld extends GameWorld {
         g.addObjectToLayer(cart, 1);
 
         // Movement
-        MoveableComponent cartMC = new CartMoveableComponent(cart, 1, mordecai);
+        MoveableComponent cartMC = new CartMoveableComponent(cart, 1, mordecai, rigby);
         cart.addComponent(cartMC);
         CharacterInputComponent cartIC = new CharacterInputComponent(cart, this, this::getOutOfCart);
         cart.addComponent(cartIC);
@@ -148,8 +147,10 @@ public class HamboningWorld extends GameWorld {
         mc.setStop();
         // deregister mordecai from input listening
         i.removeObject(mordecai);
-        // move mordecai into center of cart
-        mordecai.tc.setPos(cart.tc.getPosition());
+        // move mordecai and rigby into cart
+        CartMoveableComponent cmc = (CartMoveableComponent) cart.getComponent(CompEnum.Moveable);
+        mordecai.tc.setPos(cmc.getMordPosInCart());
+        rigby.tc.setPos(cmc.getRigbyPosInCart());
         // register cart for input listening
         i.addObject(cart);
     }
@@ -159,6 +160,9 @@ public class HamboningWorld extends GameWorld {
         i.removeObject(cart);
         // register mordecai for input listening
         i.addObject(mordecai);
+        // clear rigby pathfinding
+        RigbyMoveComponent rmc = (RigbyMoveComponent) rigby.getComponent(CompEnum.Moveable);
+        rmc.clearPath();
     }
 
     private void setupSystems(){

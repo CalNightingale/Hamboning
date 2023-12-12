@@ -17,24 +17,36 @@ import javafx.scene.paint.Color;
 import org.w3c.dom.Element;
 
 public class CartMoveableComponent extends MoveableComponent {
-    private final GameObject character;
-    public CartMoveableComponent(GameObject cart, double moveAmount, GameObject character) {
+    private final GameObject mordecai;
+    private final GameObject rigby;
+    public CartMoveableComponent(GameObject cart, double moveAmount, GameObject mordecai, GameObject rigby) {
         super(cart, moveAmount);
-        this.character = character;
+        this.mordecai = mordecai;
+        this.rigby = rigby;
     }
 
     public CartMoveableComponent(Element data, GameObject thisO, GameWorld gw){
         super(thisO, 0);
-        this.character = null;
+        // TODO FIX THIS IT FOR SURE WONT WORK
+        this.mordecai = null;
+        this.rigby = null;
+    }
 
+    public Vec2d getMordPosInCart() {
+        return this.o.tc.getPosition();
+    }
+
+    public Vec2d getRigbyPosInCart() {
+        return new Vec2d(this.o.tc.getPosition().x + this.o.tc.getSize().x/2, this.o.tc.getPosition().y);
     }
 
     @Override
     public void onTick(long nanos) {
         super.onTick(nanos);
-        // if moving, set character position to cart position
+        // if moving, set mordecai position to cart position
         if (this.isMoving()) {
-            character.tc.setPos(this.o.tc.getPosition());
+            mordecai.tc.setPos(getMordPosInCart());
+            rigby.tc.setPos(getRigbyPosInCart());
         }
     }
 
