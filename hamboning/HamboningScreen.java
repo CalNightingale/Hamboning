@@ -36,7 +36,8 @@ public class HamboningScreen extends Screen {
         super(app, screenSize);
 
         this.sl = new SaveLoad();
-        this.scoreElement = new ScoreElement(new Vec2d(75,25), new Vec2d(50), HamboningConstants.BUTTON_FONT_PATH, Color.BLACK, getScreenSize());
+        this.scoreElement = new ScoreElement(new Vec2d(85,25), new Vec2d(50),
+                HamboningConstants.TITLE_FONT_PATH, Color.BLACK, getScreenSize());
 
         Vec2d vpSize = new Vec2d(screenSize.x, screenSize.y);
         // if want skinny vp, make vpsize y,y not x,y
