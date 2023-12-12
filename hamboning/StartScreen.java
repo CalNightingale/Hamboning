@@ -155,6 +155,7 @@ public class StartScreen extends Screen {
             title.setVisible(true);
             buttonContainer.setVisible(true);
         } else if (e.getCode() == KeyCode.M) {
+            // pass muting command to hs so it can toggle the music
             this.hs.onKeyPressed(e);
         }
     }
