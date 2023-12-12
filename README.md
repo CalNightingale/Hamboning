@@ -1,5 +1,10 @@
 # csci1950n-final-project-fall-2023-hamboning
 
+
+###Instructions
+Welcome to our Regular Show Game! Use the arrow keys to move, `E` to get in the cart,
+`M` to mute,`ESC` to get to the menu. Otherwise, have fun!!
+
 ###Playtest Mid-Dev
 Jacques
 

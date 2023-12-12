@@ -11,7 +11,7 @@ import javafx.scene.paint.Color;
 
 public class StartScreen extends Screen {
     private boolean firstTick;
-    private final HamboningScreen hs;
+    private HamboningScreen hs;
     private final Application app;
     private IntroSound introSound;
     private int curBeatDrop;

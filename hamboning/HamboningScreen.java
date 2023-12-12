@@ -28,7 +28,6 @@ public class HamboningScreen extends Screen {
     private SaveLoad sl;
     private boolean firstTick = true;
     private Screen menuScreen;
-
     private ScoreElement scoreElement;
 
 
