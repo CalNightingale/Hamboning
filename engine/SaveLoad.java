@@ -63,7 +63,6 @@ public class SaveLoad {
         if (node.getNodeType() == Node.ELEMENT_NODE){
           Element element = (Element) node;
           String systemId = element.getAttribute("id");
-
           try {
             if (systemId.length() > 1){
               SystemEnum sysEnum = SystemEnum.valueOf(systemId.replace("System",""));

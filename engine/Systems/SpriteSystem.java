@@ -36,13 +36,11 @@ public class SpriteSystem extends BaseSystem<SpriteSystem>{
     for (int i = 0; i < sprites.getLength(); i++){
       Element objEl = (Element) sprites.item(i);
       String objID = objEl.getAttribute("id");
-      System.out.println(objID + "spriteSystem");
       UUID uuid = UUID.fromString(objID);
       GameObject obj = gameObjectMap.get(uuid);
       String imPath = objEl.getTextContent();
 
-      loadSprite(obj, imPath); //here is where it's not working
-
+      addAndLoad(obj, imPath);
 
 
     }
@@ -53,7 +51,7 @@ public class SpriteSystem extends BaseSystem<SpriteSystem>{
   public void registerImage(String key, String filePath){
     System.out.println("registering image");
     Image spriteImage = new Image(filePath);
-    this.tempmap.put(spriteImage, key);
+    this.tempmap.put(spriteImage, filePath);
     this.temp2.put(key, spriteImage);
   }
 
@@ -74,6 +72,7 @@ public class SpriteSystem extends BaseSystem<SpriteSystem>{
       gameObjectElement.setAttribute("id", String.valueOf(sprite.getKey().getId()));
 
       gameObjectElement.setTextContent(tempmap.get(sprite.getValue()));
+      spriteMap.appendChild(gameObjectElement);
     }
     midEl.appendChild(spriteMap);
     return midEl;
@@ -108,9 +107,16 @@ public class SpriteSystem extends BaseSystem<SpriteSystem>{
   public Image loadSprite(GameObject o, String filePath){
     Image spriteImage = new Image(filePath);
     this.sprites.put(o, spriteImage);
-    SpriteComponent sc = o.getComponent(CompEnum.Sprite); //make sure to set image on load
-    this.tempmap.put(spriteImage, filePath);
-    sc.setImage(spriteImage);
+    try {
+      SpriteComponent sc = o.getComponent(CompEnum.Sprite); //make sure to set image on load
+      this.tempmap.put(spriteImage, filePath);
+      sc.setImage(spriteImage);
+
+    } catch (NullPointerException e){
+      System.out.println(e.getMessage());
+      System.out.println("problem image" + o.getClass().getName() + " " + filePath);
+      }
+
     return spriteImage;
   }
 

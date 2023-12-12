@@ -66,6 +66,9 @@ public class HamboningWorld extends GameWorld {
         mordecai = makeMordecai();
         rigby = makeRigby();
         cart = makeCart();
+        this.addObjects(mordecai);
+        this.addObjects(rigby);
+        this.addObjects(cart);
     }
 
     private GameObject makeRigby() {

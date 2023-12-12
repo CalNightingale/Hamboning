@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
 public class HamboningMapLoader {
@@ -198,6 +199,8 @@ public class HamboningMapLoader {
     GraphicsComponent graphics = new GraphicsComponent(tile.getTransform(), this.gw.getScreenSize(), spriteComponent);
     tile.addComponent(graphics);
     g.addObjectToLayer(tile, 1);
+    this.gw.addObjects(tile);
+
   }
 
   private void createShrub(int rowCount, int colCount) {
@@ -217,6 +220,7 @@ public class HamboningMapLoader {
     GraphicsComponent graphics = new GraphicsComponent(tile.getTransform(), this.gw.getScreenSize(), spriteComponent);
     tile.addComponent(graphics);
     g.addObjectToLayer(tile, 1);
+    this.gw.addObjects(tile);
 
   }
 
@@ -243,6 +247,7 @@ public class HamboningMapLoader {
           this.gw.getScreenSize(), spriteComponent);
       tile.addComponent(graphics);
       g.addObjectToLayer(tile, 1);
+      this.gw.addObjects(tile);
     } else {
       Vec2d location = new Vec2d(0, 0);
       GameObject tile = new GameObject(
@@ -264,9 +269,11 @@ public class HamboningMapLoader {
           this.gw.getScreenSize(), spriteComponent);
       tile.addComponent(graphics);
       g.addObjectToLayer(tile, 1);
+      this.gw.addObjects(tile);
 
 
     }
+
 
 
   }
@@ -290,6 +297,7 @@ public class HamboningMapLoader {
       GraphicsComponent graphics = new GraphicsComponent(tile.getTransform(), this.gw.getScreenSize(), spriteComponent);
       tile.addComponent(graphics);
       g.addObjectToLayer(tile, 1);
+      this.gw.addObjects(tile);
 
     } else {
       Vec2d location = new Vec2d(0,0);
@@ -308,6 +316,7 @@ public class HamboningMapLoader {
       GraphicsComponent graphics = new GraphicsComponent(tile.getTransform(), this.gw.getScreenSize(), spriteComponent);
       tile.addComponent(graphics);
       g.addObjectToLayer(tile, 1);
+      this.gw.addObjects(tile);
     }
 
   }
@@ -329,6 +338,7 @@ public class HamboningMapLoader {
     GraphicsComponent graphics = new GraphicsComponent(tile.getTransform(), this.gw.getScreenSize(), spriteComponent);
     tile.addComponent(graphics);
     g.addObjectToLayer(tile, 1);
+    this.gw.addObjects(tile);
   }
 
   private void createSkips(int rowCount, int colCount) {
@@ -348,6 +358,7 @@ public class HamboningMapLoader {
     GraphicsComponent graphics = new GraphicsComponent(tile.getTransform(), this.gw.getScreenSize(), spriteComponent);
     tile.addComponent(graphics);
     g.addObjectToLayer(tile, 1);
+    this.gw.addObjects(tile);
   }
 
   private void createPlayground(int rowCount, int colCount) {
@@ -367,6 +378,7 @@ public class HamboningMapLoader {
     GraphicsComponent graphics = new GraphicsComponent(tile.getTransform(), this.gw.getScreenSize(), spriteComponent);
     tile.addComponent(graphics);
     g.addObjectToLayer(tile, 1);
+    this.gw.addObjects(tile);
   }
 
   private void createTrailer(int rowCount, int colCount) {
@@ -386,6 +398,7 @@ public class HamboningMapLoader {
     GraphicsComponent graphics = new GraphicsComponent(tile.getTransform(), this.gw.getScreenSize(), spriteComponent);
     tile.addComponent(graphics);
     g.addObjectToLayer(tile, 1);
+    this.gw.addObjects(tile);
   }
 
   private void createTables(int rowCount, int colCount) {
@@ -404,6 +417,7 @@ public class HamboningMapLoader {
     GraphicsComponent graphics = new GraphicsComponent(tile.getTransform(), this.gw.getScreenSize(), spriteComponent);
     tile.addComponent(graphics);
     g.addObjectToLayer(tile, 1);
+    this.gw.addObjects(tile);
   }
 
   private void createLeaves(int rowCount, int colCount) {
@@ -423,6 +437,7 @@ public class HamboningMapLoader {
     GraphicsComponent graphics = new GraphicsComponent(tile.getTransform(), this.gw.getScreenSize(), spriteComponent);
     tile.addComponent(graphics);
     g.addObjectToLayer(tile, 1);
+    this.gw.addObjects(tile);
 
   }
 
@@ -438,6 +453,7 @@ public class HamboningMapLoader {
     GraphicsComponent graphics = new GraphicsComponent(tile.getTransform(), this.gw.getScreenSize(), spriteComponent);
     tile.addComponent(graphics);
     g.addObjectToLayer(tile, 1);
+    this.gw.addObjects(tile);
   }
 
 
@@ -482,6 +498,7 @@ public class HamboningMapLoader {
       GraphicsComponent graphics = new GraphicsComponent(tile.getTransform(), this.gw.getScreenSize(), spriteComponent);
       tile.addComponent(graphics);
       g.addObjectToLayer(tile, 0);
+      this.gw.addObjects(tile);
 
     } else {
       Vec2d location = new Vec2d(0,0);
@@ -495,6 +512,7 @@ public class HamboningMapLoader {
       GraphicsComponent graphics = new GraphicsComponent(tile.getTransform(), this.gw.getScreenSize(), spriteComponent);
       tile.addComponent(graphics);
       g.addObjectToLayer(tile, 0);
+      this.gw.addObjects(tile);
     }
 
 
@@ -512,6 +530,7 @@ public class HamboningMapLoader {
     GraphicsComponent graphics = new GraphicsComponent(tile.getTransform(), this.gw.getScreenSize(), spriteComponent);
     tile.addComponent(graphics);
     g.addObjectToLayer(tile, 0);
+    this.gw.addObjects(tile);
   }
 
   private void createBorderTile(int rowCount, int colCount) {
@@ -533,6 +552,7 @@ public class HamboningMapLoader {
     GraphicsComponent graphics = new GraphicsComponent(tile.getTransform(), this.gw.getScreenSize(), spriteComponent);
     tile.addComponent(graphics);
     g.addObjectToLayer(tile, 0);
+    this.gw.addObjects(tile);
   }
 
   private void createEdgeTile(int rowCount, int colCount) {
@@ -554,6 +574,7 @@ public class HamboningMapLoader {
     GraphicsComponent graphics = new GraphicsComponent(tile.getTransform(), this.gw.getScreenSize(), spriteComponent);
     tile.addComponent(graphics);
     g.addObjectToLayer(tile, 0);
+    this.gw.addObjects(tile);
   }
 
   private void createGrassTile(int rowCount, int colCount) {
@@ -565,32 +586,25 @@ public class HamboningMapLoader {
     tile.addComponent(spriteComponent);
     s.addObject(tile);
     double randDouble = this.random.nextDouble();
+    Image im;
     if (randDouble > 0.75) {
-
-      s.loadSprite(tile, s.getImage("grass1"));
-      GraphicsComponent graphics = new GraphicsComponent(tile.getTransform(), this.gw.getScreenSize(), spriteComponent);
-      tile.addComponent(graphics);
-      g.addObjectToLayer(tile, 0);
+      im = s.getImage("grass1");
     } else if (randDouble > 0.5) {
+      im = s.getImage("grass2");
 
-      s.loadSprite(tile, s.getImage("grass2"));
-      GraphicsComponent graphics = new GraphicsComponent(tile.getTransform(), this.gw.getScreenSize(), spriteComponent);
-      tile.addComponent(graphics);
-      g.addObjectToLayer(tile, 0);
+
     } else if (randDouble > 0.25) {
-
-      s.loadSprite(tile, s.getImage("grass3"));
-      GraphicsComponent graphics = new GraphicsComponent(tile.getTransform(), this.gw.getScreenSize(), spriteComponent);
-      tile.addComponent(graphics);
-      g.addObjectToLayer(tile, 0);
+      im = s.getImage("grass3");
 
     } else {
-      s.loadSprite(tile, s.getImage("grass4"));
-      GraphicsComponent graphics = new GraphicsComponent(tile.getTransform(), this.gw.getScreenSize(), spriteComponent);
-      tile.addComponent(graphics);
-      g.addObjectToLayer(tile, 0);
+      im = s.getImage("grass4");
 
     }
+    s.loadSprite(tile, im);
+    GraphicsComponent graphics = new GraphicsComponent(tile.getTransform(), this.gw.getScreenSize(), spriteComponent);
+    tile.addComponent(graphics);
+    g.addObjectToLayer(tile, 0);
+    this.gw.addObjects(tile);
 
 
 
