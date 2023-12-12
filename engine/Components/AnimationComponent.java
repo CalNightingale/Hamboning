@@ -103,8 +103,18 @@ public class AnimationComponent extends SpriteComponent{
 
   @Override
   public void onDraw(GraphicsContext g) {
+    if ((this.getCurrDir() == MovementDir.LEFT)){
+      g.drawImage(this.sprite, getPosition().x, getPosition().y, getSize().x, getSize().y,
+          tc.getPosition().x, tc.getPosition().y, tc.getSize().x, tc.getSize().y);
+
+
+    } else {
       g.drawImage(this.sprite, getPosition().x + getSize().x, getPosition().y, -getSize().x, getSize().y,
           tc.getPosition().x, tc.getPosition().y, tc.getSize().x, tc.getSize().y);
+
+
+    }
+
 
   }
 
