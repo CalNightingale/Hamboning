@@ -19,7 +19,6 @@ public class TileCollisionComponent extends CollisionComponent {
 
   public TileCollisionComponent(Element data, GameObject o, GameWorld gameWorld){
     super(data, o.tc);
-
   }
 
   @Override
@@ -33,8 +32,11 @@ public class TileCollisionComponent extends CollisionComponent {
     }
     if (coll.thisShape.getTag() == "leaves"){ // can do this with everything
       this.o.getGW().addToRemovals(coll.other);
+      // TODO ADD SOME SORT OF CHECK FOR WHETHER IT'S MORDECAI OR NOT
+      // if (coll.other.getTag() == {MORDECAI'S TAG}) {
       HamboningWorld hw = (HamboningWorld) this.o.getGW();
       hw.addToScore(HamboningConstants.LEAF_SCORE_AMT);
+      // }
     }
     if (coll.thisShape.getTag() == "tables"){
       this.o.tc.setPos(this.o.tc.getPosition().plus(coll.mtv.sdiv(2).reflect()));
