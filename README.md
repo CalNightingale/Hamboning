@@ -1,11 +1,11 @@
-# csci1950n-final-project-fall-2023-hamboning
+# CSCI1950N Final Project: Hamboning
+Created by Cal Nightingale and Elliott Rosenberg
 
-
-###Instructions
+### Instructions
 Welcome to our Regular Show Game! Use the arrow keys to move, `E` to get in the cart,
 `M` to mute,`ESC` to get to the menu. Otherwise, have fun!!
 
-###Playtest Mid-Dev
+### Playtest Mid-Dev
 Jacques
 
 I am having a good time with this game but there isn't really much to do. The movement is a 
@@ -36,7 +36,7 @@ keys to move. Once she figured it out though was thoroughly excited about the ma
 Spent a while exploring the bounds of the map and playing in and around the trees and rocks. Could've 
 probably just moved around in the world for a while and had a good time.
 
-###Playtest Post-Dev
+### Playtest Post-Dev
 
 Molly
 
