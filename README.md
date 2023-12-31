@@ -1,6 +1,10 @@
 # CSCI1950N Final Project: Hamboning
 Created by Cal Nightingale and Elliott Rosenberg
 
+### Demo
+
+https://github.com/CalNightingale/Hamboning/assets/29107721/4fc05eba-62e8-499e-8d75-8ca60a2f6512
+
 ### Instructions
 Welcome to our Regular Show Game! Use the arrow keys to move, `E` to get in the cart,
 `M` to mute,`ESC` to get to the menu. Otherwise, have fun!!
